@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6udnipqrfvgo"]
+
+[ext_resource type="Script" path="res://crys.gd" id="1_7vrej"]
+[ext_resource type="PackedScene" uid="uid://dt83q6k6vhnbh" path="res://player.tscn" id="1_mcw0a"]
+[ext_resource type="PackedScene" uid="uid://cpnpmic8dmiar" path="res://bug.tscn" id="2_y0k38"]
+[ext_resource type="PackedScene" uid="uid://di4vndyj4xvoj" path="res://hud.tscn" id="4_a86t1"]
+[ext_resource type="AudioStream" uid="uid://x2br6xtlm5do" path="res://art/House In a Forest Loop.ogg" id="5_vnejx"]
+[ext_resource type="AudioStream" uid="uid://ds6e7c54habbh" path="res://art/gameover.wav" id="6_racts"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yg5j8"]
+noise_type = 3
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_audi6"]
+seamless = true
+noise = SubResource("FastNoiseLite_yg5j8")
+
+[sub_resource type="Curve2D" id="Curve2D_g5u21"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 720, 540, 0, 0, 0, 0, 0, 540, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Crys" type="Node"]
+script = ExtResource("1_7vrej")
+bug_scene = ExtResource("2_y0k38")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.475854, 0.711441, 0.477685, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.298039, 0.631373, 0.345098, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_audi6")
+
+[node name="Player" parent="." instance=ExtResource("1_mcw0a")]
+
+[node name="BugTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="BugPath" type="Path2D" parent="."]
+position = Vector2(1, 0)
+curve = SubResource("Curve2D_g5u21")
+
+[node name="BugSpawnLocation" type="PathFollow2D" parent="BugPath"]
+
+[node name="HUD" parent="." instance=ExtResource("4_a86t1")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vnejx")
+parameters/looping = true
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_racts")
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="BugTimer" to="." method="_on_bug_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

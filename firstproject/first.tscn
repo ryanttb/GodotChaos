@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://drgs0owa0io78"]
+
+[ext_resource type="Texture2D" uid="uid://bw47wrpx8og20" path="res://icon.svg" id="1_icljr"]
+[ext_resource type="Script" path="res://icon.gd" id="1_qy4ih"]
+[ext_resource type="Script" path="res://icon_sprite.gd" id="3_xs7t1"]
+
+[node name="First" type="Node2D"]
+
+[node name="Icon" type="Node2D" parent="."]
+position = Vector2(432, 306)
+script = ExtResource("1_qy4ih")
+
+[node name="IconSprite" type="Sprite2D" parent="Icon"]
+texture = ExtResource("1_icljr")
+script = ExtResource("3_xs7t1")
+
+[node name="Timer" type="Timer" parent="Icon"]
+autostart = true
+
+[node name="Toggle" type="Button" parent="."]
+offset_left = 114.0
+offset_top = 436.0
+offset_right = 181.0
+offset_bottom = 467.0
+text = "Toggle"
+
+[connection signal="icon_faced_up" from="Icon" to="Icon" method="_on_icon_faced_up"]
+[connection signal="icon_rotated" from="Icon" to="Icon" method="_on_icon_rotated"]
+[connection signal="pressed" from="Toggle" to="Icon" method="_on_toggle_pressed"]

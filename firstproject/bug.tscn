@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpnpmic8dmiar"]
+
+[ext_resource type="Texture2D" uid="uid://cu8fg361lt1rk" path="res://art/red_bug_00.png" id="1_2gwkb"]
+[ext_resource type="Script" path="res://bug.gd" id="1_rdny8"]
+[ext_resource type="Texture2D" uid="uid://jeckyaed615h" path="res://art/red_bug_01.png" id="2_a18iy"]
+[ext_resource type="Texture2D" uid="uid://sufj2p8r5leb" path="res://art/red_bug_02.png" id="3_lhfhy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2fwq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2gwkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a18iy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lhfhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a18iy")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kuwba"]
+radius = 15.0
+height = 36.0
+
+[node name="Bug" type="RigidBody2D" groups=["bugs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_rdny8")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v2fwq")
+animation = &"fly"
+frame = 1
+frame_progress = 0.039157
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kuwba")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

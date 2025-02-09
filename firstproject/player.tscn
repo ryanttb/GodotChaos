@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dt83q6k6vhnbh"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_7300y"]
+[ext_resource type="Texture2D" uid="uid://bxplq0x8726yl" path="res://art/mesia_up_01.png" id="1_ghefn"]
+[ext_resource type="Texture2D" uid="uid://bm7n32ccguqdy" path="res://art/mesia_down_01.png" id="2_cs4o6"]
+[ext_resource type="Texture2D" uid="uid://dirhso5d06vui" path="res://art/mesia_up_02.png" id="2_qp5sq"]
+[ext_resource type="Texture2D" uid="uid://bhmgjwfwamfpm" path="res://art/mesia_right_01.png" id="3_1cyv2"]
+[ext_resource type="Texture2D" uid="uid://bkfy3vg5sfuik" path="res://art/mesia_down_02.png" id="3_64mm1"]
+[ext_resource type="Texture2D" uid="uid://d2rewjxasjwn7" path="res://art/mesia_right_02.png" id="4_2twx7"]
+[ext_resource type="Texture2D" uid="uid://crvicubito7rh" path="res://art/mesia_left_01.png" id="4_e4ohm"]
+[ext_resource type="Texture2D" uid="uid://cuhkedfwddai2" path="res://art/mesia_left_02.png" id="5_arpuw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eucwk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cs4o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_64mm1")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_e4ohm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_arpuw")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1cyv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2twx7")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ghefn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qp5sq")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b8ymo"]
+height = 34.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_7300y")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eucwk")
+animation = &"down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4)
+shape = SubResource("CapsuleShape2D_b8ymo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

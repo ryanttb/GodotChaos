@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cvaw5rrlnvlwg"]
+
+[node name="LabelScene" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 334.0
+offset_top = 270.0
+offset_right = 383.0
+offset_bottom = 293.0
+text = "O HAI!"
