@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d17h0cy08kjtv"]
+
+[ext_resource type="Script" path="res://coin_collector_star.gd" id="1_la8ym"]
+[ext_resource type="Texture2D" uid="uid://cuumr8ejnswx8" path="res://art/bill-star.png" id="2_h6a70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfse6"]
+radius = 11.0
+
+[node name="BillStar" type="Area2D" groups=["bill_stars"]]
+script = ExtResource("1_la8ym")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h6a70")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kfse6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

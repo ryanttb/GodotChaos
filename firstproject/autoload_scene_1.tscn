@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm28iko77yue2"]
+
+[ext_resource type="Script" path="res://autoload_scene_1.gd" id="1_s3v3x"]
+
+[node name="AutoloadScene1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s3v3x")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_right = 44.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Main Menu"
+
+[node name="ToScene2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -60.0
+offset_right = 45.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "To Scene 2"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bug2D" type="Button" parent="HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Bug 2D"
+
+[node name="Mob3D" type="Button" parent="HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Mob 3D"
+
+[connection signal="pressed" from="ToScene2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HFlowContainer/Bug2D" to="." method="_on_bug_2d_pressed"]
+[connection signal="pressed" from="HFlowContainer/Mob3D" to="." method="_on_mob_3d_pressed"]

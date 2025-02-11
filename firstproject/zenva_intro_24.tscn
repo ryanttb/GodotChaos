@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8jl7l58d16q7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h60s8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wa2iq"]
+
+[node name="ZenvaIntro24" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_h60s8")
+
+[node name="DirectionalPivot" type="Node3D" parent="."]
+transform = Transform3D(0.737702, -0.675127, 0, 0.675127, 0.737702, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+visible = false
+light_color = Color(0.897198, 0.92245, 0.609883, 1)
+light_energy = 1.105
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186369, 0.655442, 1.35408)
+visible = false
+light_color = Color(0.966234, 0.304042, 0.220139, 1)
+light_energy = 3.737
+shadow_enabled = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.92137, 0, 0, 0, 1, 0, 0, 0, 3.98725, 0, -0.451849, 0)
+mesh = SubResource("PlaneMesh_wa2iq")
+
+[node name="SpotPivot" type="Node3D" parent="."]
+transform = Transform3D(0.928646, 0.355867, -0.104761, -0.207303, 0.732013, 0.648985, 0.307638, -0.580961, 0.753554, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SpotPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+light_color = Color(0.23514, 0.591466, 0.295907, 1)
+light_energy = 4.201
+shadow_enabled = true
+spot_range = 6.41145
+spot_angle = 6.96902

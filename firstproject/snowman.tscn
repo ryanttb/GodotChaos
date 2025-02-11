@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0kw426opy670"]
+
+[ext_resource type="Material" uid="uid://dcocjjkwmawqx" path="res://materials/wood.tres" id="1_2wn64"]
+[ext_resource type="Material" path="res://materials/body.material" id="1_bmcrc"]
+[ext_resource type="Material" uid="uid://cskmq15nahvja" path="res://materials/solid_pink.tres" id="2_caxbh"]
+[ext_resource type="Material" uid="uid://btn0t1fpgqs6n" path="res://materials/transparent_sky.tres" id="4_48g0r"]
+[ext_resource type="Material" uid="uid://nmfdme4o03b6" path="res://materials/bill_material.tres" id="5_cgjki"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ubdua"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2vvhj"]
+material = ExtResource("1_bmcrc")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[node name="Snowman" type="Node3D"]
+
+[node name="Butt" type="MeshInstance3D" parent="."]
+material_override = ExtResource("4_48g0r")
+mesh = SubResource("SphereMesh_ubdua")
+
+[node name="Chest" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.66, 0, 0, 0, 0.66, 0, 0, 0, 0.66, 0, 0.7, 0)
+material_override = ExtResource("2_caxbh")
+mesh = SubResource("SphereMesh_ubdua")
+
+[node name="LeftArmPivot" type="Node3D" parent="Chest"]
+transform = Transform3D(0.659044, 0.752105, 0, -0.752105, 0.659044, 0, 0, 0, 1, 0.4, 0.1, 0)
+
+[node name="LeftArm" type="MeshInstance3D" parent="Chest/LeftArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+material_override = ExtResource("1_2wn64")
+mesh = SubResource("CylinderMesh_2vvhj")
+skeleton = NodePath("../..")
+
+[node name="RightArmPivot" type="Node3D" parent="Chest"]
+transform = Transform3D(0.555904, -0.831247, 0, 0.831247, 0.555904, 0, 0, 0, 1, -0.4, 0.1, 0)
+
+[node name="RightArm" type="MeshInstance3D" parent="Chest/RightArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+material_override = ExtResource("1_2wn64")
+mesh = SubResource("CylinderMesh_2vvhj")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.15, 0)
+material_override = ExtResource("5_cgjki")
+mesh = SubResource("SphereMesh_ubdua")

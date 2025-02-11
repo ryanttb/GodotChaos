@@ -15,6 +15,7 @@ texture = ExtResource("1_icljr")
 script = ExtResource("3_xs7t1")
 
 [node name="Timer" type="Timer" parent="Icon"]
+unique_name_in_owner = true
 autostart = true
 
 [node name="Toggle" type="Button" parent="."]

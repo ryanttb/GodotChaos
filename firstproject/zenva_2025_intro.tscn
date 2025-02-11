@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlprv1ysibl6k"]
+
+[ext_resource type="Script" path="res://zenva_2025_intro.gd" id="1_24oye"]
+[ext_resource type="PackedScene" uid="uid://b5cafk03gsp3" path="res://zenva_2025_intro_player.tscn" id="1_48gaa"]
+[ext_resource type="PackedScene" uid="uid://b0kw426opy670" path="res://snowman.tscn" id="1_mw87k"]
+[ext_resource type="Texture2D" uid="uid://cuumr8ejnswx8" path="res://art/bill-star.png" id="2_emt1j"]
+[ext_resource type="PackedScene" uid="uid://ddppka0y1wx4e" path="res://country.tscn" id="4_1ii77"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ec76d"]
+
+[node name="Zenva2025Intro" type="Node"]
+script = ExtResource("1_24oye")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36793, 3.94118)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(3.07063, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ec76d")
+
+[node name="CameraPivot" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, -8.9407e-08, 1, 0, -1, -8.9407e-08, -1, 5.55918, 2.12132)
+
+[node name="Snowman" parent="Node3D" instance=ExtResource("1_mw87k")]
+transform = Transform3D(-0.999975, 0, 0.00703368, 0, 1, 0, -0.00703368, 0, -0.999975, 0, 0, 3)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Player" parent="Node2D" instance=ExtResource("1_48gaa")]
+position = Vector2(60, 94)
+
+[node name="BillStar" type="Sprite2D" parent="Node2D"]
+position = Vector2(296, 347)
+texture = ExtResource("2_emt1j")
+
+[node name="BillStar2" type="Sprite2D" parent="Node2D"]
+position = Vector2(216, 363)
+scale = Vector2(2.25507, 2.25507)
+texture = ExtResource("2_emt1j")
+
+[node name="BillStar3" type="Sprite2D" parent="Node2D"]
+position = Vector2(368, 366)
+rotation = 0.626761
+scale = Vector2(2.25507, 2.25507)
+texture = ExtResource("2_emt1j")
+
+[node name="Country" parent="Node2D" instance=ExtResource("4_1ii77")]
+position = Vector2(282, 147)
+scale = Vector2(0.312635, 0.312635)
+country_name = "Godotland"
+population = 1024
+highest_altitude = 124.94

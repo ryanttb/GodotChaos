@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8ikseosgrbp5"]
+
+[ext_resource type="Texture2D" uid="uid://iqujj1bijrt4" path="res://art/bill.png" id="1_casj7"]
+[ext_resource type="Script" path="res://zenva_coin_collector.gd" id="1_y0e4p"]
+[ext_resource type="Script" path="res://coin_collector_bill.gd" id="2_ieuic"]
+[ext_resource type="PackedScene" uid="uid://d17h0cy08kjtv" path="res://bill_star.tscn" id="4_3cd5d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_um47r"]
+height = 36.0
+
+[node name="ZenvaCoinCollector" type="Node2D"]
+script = ExtResource("1_y0e4p")
+
+[node name="CoinCollectorBill" type="CharacterBody2D" parent="."]
+script = ExtResource("2_ieuic")
+
+[node name="Sprite2D" type="Sprite2D" parent="CoinCollectorBill"]
+texture = ExtResource("1_casj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinCollectorBill"]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_um47r")
+
+[node name="Camera2D" type="Camera2D" parent="CoinCollectorBill"]
+position = Vector2(0, 22)
+
+[node name="BillStar" parent="." instance=ExtResource("4_3cd5d")]
+position = Vector2(-134, 128)
+
+[node name="BillStar2" parent="." instance=ExtResource("4_3cd5d")]
+position = Vector2(153, 136)
+
+[node name="BillStar3" parent="." instance=ExtResource("4_3cd5d")]
+position = Vector2(151, -94)
+
+[node name="BillStar4" parent="." instance=ExtResource("4_3cd5d")]
+position = Vector2(-128, -99)

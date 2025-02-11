@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="FirstProject"
-run/main_scene="res://mob_3d.tscn"
+run/main_scene="res://zenva_coin_collector.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://art/bill-star.png"
 
 [autoload]
 
 MusicPlayer="*res://music_player.tscn"
+AutoloadGlobal="*res://autoload_global.gd"
 
 [display]
 

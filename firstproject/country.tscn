@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddppka0y1wx4e"]
+
+[ext_resource type="Script" path="res://country.gd" id="1_qd4df"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_32f3i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4xe1f"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_32f3i")
+
+[node name="Country" type="Node2D"]
+script = ExtResource("1_qd4df")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_4xe1f")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-128, -128)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, 128, 0, 128, 128, 0, 128)

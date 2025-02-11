@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5cafk03gsp3"]
+
+[ext_resource type="Texture2D" uid="uid://iqujj1bijrt4" path="res://art/bill.png" id="1_3eb0m"]
+[ext_resource type="Texture2D" uid="uid://cuumr8ejnswx8" path="res://art/bill-star.png" id="2_4jih7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjfwb"]
+size = Vector2(20, 30)
+
+[node name="Player" type="CharacterBody2D"]
+modulate = Color(9.3855e-07, 0.607745, 0.169729, 1)
+
+[node name="Bill" type="Sprite2D" parent="."]
+texture = ExtResource("1_3eb0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_sjfwb")
+
+[node name="Star" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+texture = ExtResource("2_4jih7")

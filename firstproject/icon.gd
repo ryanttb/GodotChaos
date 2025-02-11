@@ -13,7 +13,8 @@ func _ready() -> void:
 	print("Icon _ready o hai")
 	
 	#var timer = $Timer
-	var timer: Timer = get_node("Timer")
+	#var timer: Timer = get_node("Timer")
+	var timer: Timer = %Timer # using "Access as Unique Name" on node
 	timer.timeout.connect(_on_timer_timeout)
 	
 
