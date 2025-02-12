@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FirstProject"
-run/main_scene="res://zenva_coin_collector.tscn"
+run/main_scene="res://MiniCollision/zenva_mini_collision.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://art/bill-star.png"
 
@@ -74,3 +74,7 @@ jump={
 3d_physics/layer_1="player"
 3d_physics/layer_2="enemies"
 3d_physics/layer_3="world"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

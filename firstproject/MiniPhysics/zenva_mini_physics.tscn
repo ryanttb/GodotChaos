@@ -1,0 +1,153 @@
+[gd_scene load_steps=7 format=3 uid="uid://brdkuv0bhgnej"]
+
+[ext_resource type="Texture2D" uid="uid://5ave1i8mw6q5" path="res://MiniPhysics/orb3d_orb.png" id="1_fkppw"]
+[ext_resource type="Script" path="res://MiniPhysics/mini_physics_player.gd" id="1_pp3tp"]
+[ext_resource type="PackedScene" uid="uid://bv7bnrfyymaqn" path="res://MiniPhysics/mini_physics_crate.tscn" id="3_ysoku"]
+[ext_resource type="PackedScene" uid="uid://bert4lo27kgti" path="res://MiniPhysics/mini_physics_pin.tscn" id="4_iknfp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_feo3s"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_exd3b"]
+normal = Vector2(1, 0)
+
+[node name="ZenvaMiniPhysics" type="Node2D"]
+
+[node name="MiniPhysicsPlayer" type="RigidBody2D" parent="."]
+mass = 5.0
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_pp3tp")
+
+[node name="Orb3dOrb" type="Sprite2D" parent="MiniPhysicsPlayer"]
+texture = ExtResource("1_fkppw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniPhysicsPlayer"]
+shape = SubResource("CapsuleShape2D_feo3s")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="MiniPhysicsCrate" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-42, 0)
+
+[node name="MiniPhysicsCrate2" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(47, -42)
+
+[node name="MiniPhysicsCrate3" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(84, -8)
+
+[node name="MiniPhysicsCrate4" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-70, -38)
+
+[node name="MiniPhysicsCrate5" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(47, 39)
+
+[node name="MiniPhysicsCrate6" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-124, -31)
+
+[node name="MiniPhysicsCrate7" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-113, 13)
+
+[node name="MiniPhysicsCrate8" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-116, 80)
+
+[node name="MiniPhysicsCrate9" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(12, 71)
+
+[node name="MiniPhysicsCrate10" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(74, 91)
+
+[node name="MiniPhysicsCrate11" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(143, 85)
+
+[node name="MiniPhysicsCrate12" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(119, 5)
+
+[node name="MiniPhysicsCrate13" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(150, -50)
+
+[node name="MiniPhysicsCrate14" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(70, -88)
+
+[node name="MiniPhysicsCrate15" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-12, -85)
+
+[node name="MiniPhysicsCrate16" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-96, -101)
+
+[node name="MiniPhysicsCrate17" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-162, -110)
+
+[node name="MiniPhysicsCrate18" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-153, -49)
+
+[node name="MiniPhysicsCrate19" parent="." instance=ExtResource("3_ysoku")]
+position = Vector2(-148, 15)
+
+[node name="MiniPhysicsPin" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(26, -22)
+
+[node name="MiniPhysicsPin5" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-80, 41)
+
+[node name="MiniPhysicsPin6" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-126, -88)
+
+[node name="MiniPhysicsPin7" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(99, -96)
+
+[node name="MiniPhysicsPin8" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-63, -96)
+
+[node name="MiniPhysicsPin9" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-149, 68)
+
+[node name="MiniPhysicsPin10" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(100, 55)
+
+[node name="MiniPhysicsPin11" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-45, 83)
+
+[node name="MiniPhysicsPin12" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(124, -65)
+
+[node name="MiniPhysicsPin13" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(33, -105)
+
+[node name="MiniPhysicsPin2" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(60, 2)
+
+[node name="MiniPhysicsPin3" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-24, -35)
+
+[node name="MiniPhysicsPin4" parent="." instance=ExtResource("4_iknfp")]
+position = Vector2(-8, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-180, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_exd3b")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(0, -135)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_exd3b")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(180, 2.38419e-07)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_exd3b")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-5.96046e-08, 135)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("WorldBoundaryShape2D_exd3b")

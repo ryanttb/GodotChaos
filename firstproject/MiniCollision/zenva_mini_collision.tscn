@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5bwyc3838ncp"]
+
+[ext_resource type="PackedScene" uid="uid://cnxp37cd2gbql" path="res://MiniCollision/mini_collision_skier.tscn" id="1_561ae"]
+[ext_resource type="PackedScene" uid="uid://de1vq1v2co75f" path="res://MiniCollision/mini_collision_tree.tscn" id="2_c2j8f"]
+
+[sub_resource type="Environment" id="Environment_itn3s"]
+background_mode = 1
+background_color = Color(0.132156, 0.537389, 0.642819, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hml0i"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yx8vi"]
+seamless = true
+noise = SubResource("FastNoiseLite_hml0i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgw4r"]
+albedo_texture = SubResource("NoiseTexture2D_yx8vi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0sy5g"]
+material = SubResource("StandardMaterial3D_lgw4r")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kchmj"]
+size = Vector3(18, 0.3, 48)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4aj6"]
+friction = 0.0
+
+[node name="ZenvaMiniCollision" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_itn3s")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96363, 0.267238, 0, -0.267238, 0.96363, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(18, 0, 0, 0, 0.3, 0, 0, 0, 48, 0, 0, 0)
+mesh = SubResource("BoxMesh_0sy5g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_kchmj")
+
+[node name="SkierPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96681, 0.255496, 0, -0.255496, 0.96681, 0, 3.07256, 10.6559)
+
+[node name="MiniCollisionSkier" parent="SkierPivot" instance=ExtResource("1_561ae")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, -1.77636e-15, -1, 0, -4.37114e-08, 0, 1.00343, 10.1315)
+physics_material_override = SubResource("PhysicsMaterial_k4aj6")
+
+[node name="Camera3D" type="Camera3D" parent="SkierPivot/MiniCollisionSkier"]
+transform = Transform3D(0.0331552, 0.393725, -0.91863, -9.31323e-10, 0.919136, 0.393942, 0.99945, -0.0130612, 0.0304741, -3.25668, 3.48109, -1.42354e-07)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.688441, -0.228249, -0.688441, 0.707107, -3.09086e-08, 0.707107, -0.161396, -0.973603, 0.161396, -5, 8.13054, 2.39592)
+shadow_enabled = true
+
+[node name="MiniCollisionTree" parent="." instance=ExtResource("2_c2j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0897, 0)
+
+[node name="MiniCollisionTree2" parent="." instance=ExtResource("2_c2j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17914, 4.06917, 10.875)
+
+[node name="MiniCollisionTree3" parent="." instance=ExtResource("2_c2j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.82332, -0.810273, -6.9965)
+
+[node name="MiniCollisionTree4" parent="." instance=ExtResource("2_c2j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50085, -0.810273, -5.72103)
+
+[node name="MiniCollisionTree5" parent="." instance=ExtResource("2_c2j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16338, 2.26127, 4.25166)
+
+[node name="MiniCollisionTree6" parent="." instance=ExtResource("2_c2j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.521348, 4.80256, 13.7416)

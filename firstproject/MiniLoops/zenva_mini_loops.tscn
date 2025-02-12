@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq5t6il55lnh1"]
+
+[ext_resource type="Script" path="res://MiniLoops/zenva_mini_loops.gd" id="1_b63pk"]
+[ext_resource type="PackedScene" uid="uid://b2pd2fik8rcfc" path="res://MiniLoops/zenva_mini_loops_star.tscn" id="2_y0h5k"]
+
+[node name="ZenvaMiniLoops" type="Node2D"]
+script = ExtResource("1_b63pk")
+spawn_count = 500
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.25, 0.25)
+
+[node name="Star" parent="." instance=ExtResource("2_y0h5k")]

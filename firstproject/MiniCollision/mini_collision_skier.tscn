@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://cnxp37cd2gbql"]
+
+[ext_resource type="Script" path="res://MiniCollision/mini_collision_skier.gd" id="1_6q3lk"]
+[ext_resource type="Material" uid="uid://dii1uo4os6xob" path="res://MiniCollision/ski_material.tres" id="1_7388p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ixdnt"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q47xw"]
+albedo_color = Color(0.166003, 0.407058, 0.499272, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0crid"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0jlh"]
+albedo_color = Color(0.664092, 0.527313, 0.0309467, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u8067"]
+material = SubResource("StandardMaterial3D_m0jlh")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yh2ct"]
+radius = 0.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_he1xl"]
+size = Vector3(1, 0.05, 0.125)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lm03w"]
+size = Vector3(1, 0.05, 0.125)
+
+[node name="MiniCollisionSkier" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_6q3lk")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ixdnt")
+surface_material_override/0 = SubResource("StandardMaterial3D_q47xw")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0crid")
+
+[node name="HeadMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("SphereMesh_u8067")
+
+[node name="HeadCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("SphereShape3D_yh2ct")
+
+[node name="LeftSkiMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, -0.15)
+material_override = ExtResource("1_7388p")
+mesh = SubResource("BoxMesh_he1xl")
+
+[node name="LeftCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, -0.15)
+shape = SubResource("BoxShape3D_lm03w")
+
+[node name="RightSkiMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0.15)
+material_override = ExtResource("1_7388p")
+mesh = SubResource("BoxMesh_he1xl")
+
+[node name="RightCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0.15)
+shape = SubResource("BoxShape3D_lm03w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

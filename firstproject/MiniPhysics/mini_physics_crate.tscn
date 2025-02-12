@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv7bnrfyymaqn"]
+
+[ext_resource type="Texture2D" uid="uid://wfwg3dg8rop0" path="res://MiniPhysics/orb3d_crate.png" id="1_2fvpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh7gt"]
+size = Vector2(16, 16)
+
+[node name="MiniPhysicsCrate" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 3.0
+
+[node name="Orb3dCrate" type="Sprite2D" parent="."]
+texture = ExtResource("1_2fvpf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eh7gt")

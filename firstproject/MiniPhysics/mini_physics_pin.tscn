@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bert4lo27kgti"]
+
+[ext_resource type="Texture2D" uid="uid://gia2f22acro3" path="res://MiniPhysics/orb3d_pin.png" id="1_wfnwq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vcpbk"]
+radius = 4.0
+height = 16.0
+
+[node name="MiniPhysicsPin" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 1.0
+
+[node name="Orb3dPin" type="Sprite2D" parent="."]
+texture = ExtResource("1_wfnwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vcpbk")
