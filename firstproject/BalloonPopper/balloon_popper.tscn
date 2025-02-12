@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://c44at7fwssith"]
+
+[ext_resource type="Script" path="res://BalloonPopper/balloon_popper.gd" id="1_hbv0r"]
+[ext_resource type="PackedScene" uid="uid://cudwciohnox44" path="res://BalloonPopper/balloon.tscn" id="2_aqdna"]
+[ext_resource type="FontFile" uid="uid://b8n7nenfnnc1n" path="res://fonts/Xolonium-Regular.ttf" id="3_hk6nx"]
+
+[sub_resource type="Theme" id="Theme_g8y0o"]
+default_font = ExtResource("3_hk6nx")
+
+[node name="BalloonPopper" type="Node3D" node_paths=PackedStringArray("score_text")]
+script = ExtResource("1_hbv0r")
+score_text = NodePath("HUD/ScoreLabel")
+
+[node name="Balloon" parent="." instance=ExtResource("2_aqdna")]
+
+[node name="Balloon2" parent="." instance=ExtResource("2_aqdna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41732, 1.15032, -0.156276)
+clicks_to_pop = 4
+score_to_give = 2
+
+[node name="Balloon3" parent="." instance=ExtResource("2_aqdna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51225, 1.37565, -0.125188)
+clicks_to_pop = 5
+score_to_give = 4
+
+[node name="Balloon4" parent="." instance=ExtResource("2_aqdna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31886, -0.219392, -0.000766277)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.53928)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.796825, -0.302105, 0.523261, 0, 0.866025, 0.5, -0.60421, -0.398413, 0.690071, 3.13851, 4, 5.33339)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 125.0
+offset_bottom = 55.0
+theme = SubResource("Theme_g8y0o")
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
