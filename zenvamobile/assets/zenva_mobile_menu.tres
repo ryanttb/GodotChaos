@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://d3t6cvfesfqp8"]
+
+[ext_resource type="Texture2D" uid="uid://bbxij6wphm4l1" path="res://assets/kenny_ui/PNG/blue_button04.png" id="1_u0obn"]
+[ext_resource type="Texture2D" uid="uid://db4gjas7c7hr5" path="res://assets/kenny_ui/PNG/blue_button05.png" id="2_qmxr3"]
+[ext_resource type="FontFile" uid="uid://bgxh8yk2swbfv" path="res://assets/kenny_ui/Font/kenvector_future_thin.ttf" id="3_jy0u3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik4af"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fsnji"]
+texture = ExtResource("1_u0obn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ld8ob"]
+texture = ExtResource("1_u0obn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5iw07"]
+texture = ExtResource("2_qmxr3")
+
+[resource]
+default_font = ExtResource("3_jy0u3")
+default_font_size = 48
+Button/styles/focus = SubResource("StyleBoxEmpty_ik4af")
+Button/styles/hover = SubResource("StyleBoxTexture_fsnji")
+Button/styles/normal = SubResource("StyleBoxTexture_ld8ob")
+Button/styles/pressed = SubResource("StyleBoxTexture_5iw07")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1tqsnj51odm7"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_wh13p"]
+[ext_resource type="Theme" uid="uid://x1d3wb2rvq3n" path="res://assets/zenva_mobile.tres" id="1_ysqv4"]
+[ext_resource type="Theme" uid="uid://d3t6cvfesfqp8" path="res://assets/zenva_mobile_menu.tres" id="2_82u5i"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_42ent"]
+action = &"increase"
+
+[sub_resource type="Shortcut" id="Shortcut_qodho"]
+events = [SubResource("InputEventAction_42ent")]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wh13p")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -48.0
+offset_right = 160.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_82u5i")
+shortcut = SubResource("Shortcut_qodho")
+text = " Start"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -302.5
+offset_top = 32.0
+offset_right = 302.5
+offset_bottom = 86.0
+grow_horizontal = 2
+theme = ExtResource("1_ysqv4")
+theme_override_font_sizes/font_size = 64
+text = "Zenva Mobile Clicker"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
