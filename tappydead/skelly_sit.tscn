@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ksm03xbr7h71"]
+
+[ext_resource type="Texture2D" uid="uid://daihe3gro88he" path="res://assets/sprites/skelly_sit.png" id="1_6urb5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xcdwu"]
+radius = 4.0
+height = 18.0
+
+[node name="SkellySit" type="Area2D" groups=["DynamicObjects"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6urb5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 7)
+shape = SubResource("CapsuleShape2D_xcdwu")

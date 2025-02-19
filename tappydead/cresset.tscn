@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt3hj223wp2f0"]
+
+[ext_resource type="Texture2D" uid="uid://cjr8qagje0tsg" path="res://assets/sprites/cresset.png" id="1_wmsf7"]
+
+[node name="Cresset" type="Area2D" groups=["DynamicObjects"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wmsf7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, -28, 3, -28, 1, 19, 8, 25, 2, 28, -2, 28, -8, 25, -1, 19)

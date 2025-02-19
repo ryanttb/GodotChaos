@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://8ue0o34352g3"]
+
+[ext_resource type="FontFile" uid="uid://dis0ijjpffr8s" path="res://assets/themes/kenvector_future.ttf" id="1_b06no"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epm7e"]
+bg_color = Color(0.559929, 0.475179, 0.464303, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4a8r"]
+bg_color = Color(0.489804, 0.193634, 0.202913, 1)
+
+[resource]
+default_font = ExtResource("1_b06no")
+default_font_size = 24
+ProgressBar/styles/background = SubResource("StyleBoxFlat_epm7e")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_k4a8r")
