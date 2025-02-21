@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://oysopqjcxv4j"]
+
+[ext_resource type="Texture2D" uid="uid://drcwbewwkj78p" path="res://assets/sprites/pickaxe.png" id="1_bhvut"]
+[ext_resource type="Script" path="res://pickaxe.gd" id="1_gk1f7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nkmqx"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="Animation" id="Animation_5xtag"]
+resource_name = "Pickaxe"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_8lhje"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5n44"]
+_data = {
+"Pickaxe": SubResource("Animation_5xtag"),
+"RESET": SubResource("Animation_8lhje")
+}
+
+[sub_resource type="Curve" id="Curve_ugept"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bxcwi"]
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Pickaxe" type="Area2D" groups=["Weapons"]]
+script = ExtResource("1_gk1f7")
+
+[node name="PickaxeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_bhvut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nkmqx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j5n44")
+}
+autoplay = "Pickaxe"
+speed_scale = 2.0
+
+[node name="TrailParticles" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(0, 4)
+lifetime = 0.5
+texture = ExtResource("1_bhvut")
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+angular_velocity_min = 360.0
+angular_velocity_max = 360.0
+angle_max = 360.0
+scale_amount_curve = SubResource("Curve_ugept")
+color = Color(1, 1, 1, 0.388235)
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+z_index = 2
+emitting = false
+amount = 16
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+scale_amount_curve = SubResource("Curve_bxcwi")
+
+[connection signal="finished" from="ExplosionParticles" to="." method="_on_explosion_particles_finished"]

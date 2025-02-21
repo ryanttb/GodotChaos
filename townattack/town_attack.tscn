@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo3nl3d0xd8mt"]
+
+[ext_resource type="PackedScene" uid="uid://d0xkxwcen2x7a" path="res://princess.tscn" id="1_3f0b6"]
+[ext_resource type="Script" path="res://town_attack_2d.gd" id="1_b77vh"]
+[ext_resource type="Script" path="res://town_attack.gd" id="1_ojxbk"]
+[ext_resource type="PackedScene" uid="uid://oysopqjcxv4j" path="res://pickaxe.tscn" id="2_67b6v"]
+[ext_resource type="PackedScene" uid="uid://cm4pfwfr4jf76" path="res://block.tscn" id="4_lj267"]
+[ext_resource type="Theme" uid="uid://bknvks6tyqehs" path="res://assets/themes/ui_theme.tres" id="6_5x2jf"]
+
+[node name="TownAttack" type="Node" groups=["Main"]]
+script = ExtResource("1_ojxbk")
+
+[node name="TownAttack2D" type="Node2D" parent="."]
+script = ExtResource("1_b77vh")
+pickaxe = ExtResource("2_67b6v")
+block = ExtResource("4_lj267")
+block_spawn_x = Array[float]([2.0, 110.0, 218.0, 326.0, 434.0])
+
+[node name="AttackRateTimer" type="Timer" parent="TownAttack2D"]
+wait_time = 0.2
+autostart = true
+
+[node name="BlockSpawnTimer" type="Timer" parent="TownAttack2D"]
+wait_time = 1.5
+autostart = true
+
+[node name="ProgressionTimer" type="Timer" parent="TownAttack2D"]
+wait_time = 12.0
+autostart = true
+
+[node name="Princess" parent="TownAttack2D" instance=ExtResource("1_3f0b6")]
+z_index = 1
+position = Vector2(267, 864)
+
+[node name="Weapons" type="Node2D" parent="TownAttack2D"]
+
+[node name="Enemies" type="Node2D" parent="TownAttack2D"]
+
+[node name="HUD" type="Control" parent="."]
+z_index = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_5x2jf")
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Score: 0"
+horizontal_alignment = 2
+
+[node name="TimeLeft" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 54
+text = "10"
+horizontal_alignment = 1
+
+[node name="GameTimer" type="Timer" parent="HUD"]
+autostart = true
+
+[node name="GameOver" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_5x2jf")
+
+[node name="Tint" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+
+[node name="GameOverLabel" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 128.0
+offset_bottom = 207.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -83.0
+offset_right = 128.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayAgainButton" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Play Again"
+
+[node name="HomeButton" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Home"
+
+[connection signal="timeout" from="TownAttack2D/AttackRateTimer" to="TownAttack2D" method="_on_attack_rate_timer_timeout"]
+[connection signal="timeout" from="TownAttack2D/BlockSpawnTimer" to="TownAttack2D" method="_on_block_spawn_timer_timeout"]
+[connection signal="timeout" from="TownAttack2D/ProgressionTimer" to="TownAttack2D" method="_on_progression_timer_timeout"]
+[connection signal="timeout" from="HUD/GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="pressed" from="GameOver/VBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]

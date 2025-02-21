@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0xkxwcen2x7a"]
+
+[ext_resource type="Script" path="res://princess.gd" id="1_lsjrk"]
+[ext_resource type="Texture2D" uid="uid://bjmuaf5x2nwuc" path="res://assets/sprites/princess_up.png" id="1_x62cp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jawse"]
+radius = 5.0
+height = 14.0
+
+[node name="Princess" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_lsjrk")
+
+[node name="PrincessUp" type="Sprite2D" parent="."]
+texture = ExtResource("1_x62cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jawse")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
