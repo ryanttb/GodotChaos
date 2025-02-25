@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://con0ite4x4w81"]
+
+[ext_resource type="FontFile" uid="uid://brhem8rfj8tsf" path="res://assets/theme/FredokaOne-Regular.ttf" id="1_qwnlr"]
+[ext_resource type="Texture2D" uid="uid://doiod2o620fel" path="res://assets/theme/pink_button_normal.png" id="1_s017m"]
+[ext_resource type="Texture2D" uid="uid://de708sap3cxdj" path="res://assets/theme/pink_button_pressed.png" id="2_jox6o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hw7dp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw5kj"]
+texture = ExtResource("1_s017m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aawov"]
+texture = ExtResource("1_s017m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gjj4c"]
+texture = ExtResource("2_jox6o")
+
+[resource]
+default_font = ExtResource("1_qwnlr")
+default_font_size = 28
+Button/styles/focus = SubResource("StyleBoxEmpty_hw7dp")
+Button/styles/hover = SubResource("StyleBoxTexture_uw5kj")
+Button/styles/normal = SubResource("StyleBoxTexture_aawov")
+Button/styles/pressed = SubResource("StyleBoxTexture_gjj4c")
+GridContainer/constants/h_separation = 12
+GridContainer/constants/v_separation = 12
+VBoxContainer/constants/separation = 12
