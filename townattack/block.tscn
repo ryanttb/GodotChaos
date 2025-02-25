@@ -1,11 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm4pfwfr4jf76"]
+[gd_scene load_steps=13 format=3 uid="uid://cm4pfwfr4jf76"]
 
 [ext_resource type="Script" path="res://block.gd" id="1_h8p7e"]
 [ext_resource type="Theme" uid="uid://bknvks6tyqehs" path="res://assets/themes/ui_theme.tres" id="1_je5tc"]
+[ext_resource type="Texture2D" uid="uid://dobybsaq67xy8" path="res://assets/sprites/canari_sorcerer.png" id="3_psfu7"]
 [ext_resource type="Texture2D" uid="uid://ck87eow1vh3ac" path="res://assets/sprites/bones.png" id="3_ur1o2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmidv"]
+atlas = ExtResource("3_psfu7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yys6k"]
+atlas = ExtResource("3_psfu7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv1qj"]
+atlas = ExtResource("3_psfu7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h47h"]
+atlas = ExtResource("3_psfu7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ssmwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmidv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yys6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv1qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h47h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fndp"]
 size = Vector2(108, 108)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxhps"]
 
 [sub_resource type="Curve" id="Curve_jy4l6"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -29,6 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="Visuals"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +78,7 @@ grow_vertical = 2
 color = Color(0.919841, 0.638749, 0.598958, 1)
 
 [node name="HealthLabel" type="Label" parent="Visuals"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,11 +91,24 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+position = Vector2(54, 54)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ssmwc")
+autoplay = "default"
+frame_progress = 0.411161
+
 [node name="Area2D" type="Area2D" parent="." groups=["Enemies"]]
+
+[node name="CollisionShape2DBlock" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(54, 54)
+shape = SubResource("RectangleShape2D_7fndp")
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(54, 54)
-shape = SubResource("RectangleShape2D_7fndp")
+shape = SubResource("CapsuleShape2D_xxhps")
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 z_index = 2
