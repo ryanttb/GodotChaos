@@ -81,10 +81,9 @@ func _physics_process(delta: float) -> void:
 		
 		camera.rotate_x(-camera_look_input.y * look_sensitivity)
 		camera.rotation.x = clampf(camera.rotation.x, -1.5, 1.5)
-		
+	
 	camera_look_input = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_playing and event is InputEventMouseMotion:
 		camera_look_input = event.relative	
-		print("look: ", camera_look_input)

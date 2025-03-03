@@ -19,6 +19,10 @@ config/icon="res://pedistal.png"
 
 import/blender/enabled=false
 
+[global_group]
+
+Player="The Player node for access from other scenes"
+
 [input]
 
 forward={

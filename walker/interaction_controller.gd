@@ -2,7 +2,7 @@ extends RayCast3D
 
 @onready var interaction_prompt: Label = $InteractionPrompt
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	interaction_prompt.text = ""
 	
 	var object = get_collider()

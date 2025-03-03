@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://chafvxykrqvc8"]
+
+[ext_resource type="Script" path="res://bugs_ai_controller.gd" id="1_4kag3"]
+[ext_resource type="PackedScene" uid="uid://c2tcjs26j25ww" path="res://assets/Models/Alien/alien-bug.glb" id="1_qugpo"]
+[ext_resource type="Script" path="res://state_machine.gd" id="3_1bw5c"]
+[ext_resource type="Script" path="res://wander_state.gd" id="4_k3ct6"]
+[ext_resource type="Script" path="res://chase_state.gd" id="5_1i8bh"]
+[ext_resource type="Script" path="res://flee_state.gd" id="6_3keyt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_08avw"]
+height = 0.6
+radius = 0.4
+
+[node name="Bug" type="CharacterBody3D"]
+script = ExtResource("1_4kag3")
+
+[node name="BugModel" parent="." instance=ExtResource("1_qugpo")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("CylinderShape3D_08avw")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+script = ExtResource("3_1bw5c")
+default_state = NodePath("Wander")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("4_k3ct6")
+controller_path = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("5_1i8bh")
+controller_path = NodePath("../..")
+
+[node name="Flee" type="Node" parent="StateMachine"]
+script = ExtResource("6_3keyt")
+controller_path = NodePath("../..")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="StateMachine" method="_on_target_reached"]
