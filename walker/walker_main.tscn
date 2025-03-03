@@ -38,11 +38,8 @@ height = 1.8
 [node name="WalkerMain" type="Node3D"]
 script = ExtResource("1_1mns7")
 RockScene = ExtResource("4_uw6mu")
-num_rocks = 2
 TreeScene = ExtResource("3_pklkr")
-num_trees = 2
 PedestalScene = ExtResource("6_tjqha")
-num_pedestals = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_heg8d")
