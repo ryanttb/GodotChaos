@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state._physics_update(delta)
 
-func _on_target_reached() -> void:
+func _on_navigation_finished() -> void:
 	if current_state:
 		current_state._navigation_complete()
 

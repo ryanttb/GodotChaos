@@ -9,7 +9,6 @@ var is_stopped := false # pauses AI even if there's still a nav path
 
 var looking_at_player := false
 
-var move_direction: Vector3 # looking at next waypoint if not chasing, looking at player otherwise
 var target_y_rot: float # slowly rotate toward next waypoint or player
 var player_distance: float # distance to player node
 
@@ -28,17 +27,16 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	move_direction = Vector3.ZERO
+	# next position in the calculated path to target, avoiding obstacles
+	var target_pos = agent.get_next_path_position()
 	
-	if not (agent.is_navigation_finished() or is_stopped):
-		# next position in the calculated path to target, avoiding obstacles
-		# provided by agent
-		var target_pos = agent.get_next_path_position()
-		
-		# direction toward next position, set y = 0 to not start floating
-		move_direction = position.direction_to(target_pos)
-		move_direction.y = 0
-		move_direction = move_direction.normalized()
+	# direction toward next position, set y = 0 to not start floating
+	var move_direction = position.direction_to(target_pos)
+	move_direction.y = 0
+	move_direction = move_direction.normalized()
+	
+	if agent.is_navigation_finished() or is_stopped:
+		move_direction = Vector3.ZERO
 	
 	var current_speed = run_speed if is_running else walk_speed
 	
