@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://2egims5j20f3"]
+
+[ext_resource type="FontFile" uid="uid://dxoexih65t4af" path="res://themes/Kenney Space.ttf" id="1_yj5ks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfk6m"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylfi2"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ey3ln"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[resource]
+default_font = ExtResource("1_yj5ks")
+default_font_size = 16
+Button/styles/hover = SubResource("StyleBoxFlat_yfk6m")
+Button/styles/normal = SubResource("StyleBoxFlat_ylfi2")
+Button/styles/pressed = SubResource("StyleBoxFlat_ey3ln")

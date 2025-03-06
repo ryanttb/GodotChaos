@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6s0gfuwt6gnx"]
+
+[ext_resource type="Theme" uid="uid://biqy1yiyi4uu2" path="res://themes/markers_theme.tres" id="1_057us"]
+
+[node name="HealthBar" type="ProgressBar"]
+custom_minimum_size = Vector2(192, 16)
+offset_right = 4.0
+offset_bottom = 27.0
+theme = ExtResource("1_057us")
+value = 50.0
+show_percentage = false

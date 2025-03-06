@@ -1,0 +1,444 @@
+[gd_scene load_steps=19 format=3 uid="uid://s0yjvxufbkj3"]
+
+[ext_resource type="Script" uid="uid://pi6o4wr0je50" path="res://levels/heart.gd" id="1_sqg53"]
+[ext_resource type="PackedScene" uid="uid://b4o6w1axrrk75" path="res://tiles/tile_end_round_spawn.tscn" id="1_yagpt"]
+[ext_resource type="PackedScene" uid="uid://ov1rrt0d5pwf" path="res://tiles/tile_end.tscn" id="2_w8q0k"]
+[ext_resource type="PackedScene" uid="uid://bqda7paldjmq" path="res://weapons/blaster.tscn" id="3_5jomb"]
+[ext_resource type="PackedScene" uid="uid://t6fqearyn3au" path="res://tiles/tile_grass.tscn" id="3_n7se3"]
+[ext_resource type="PackedScene" uid="uid://drobksj73ced6" path="res://tiles/tile_corner_square.tscn" id="4_ph8ir"]
+[ext_resource type="PackedScene" uid="uid://mpf8fvirbsw8" path="res://tiles/tile_straight.tscn" id="5_56yx2"]
+[ext_resource type="PackedScene" uid="uid://c5ckfonrjbo74" path="res://mobs/health_bar_3d.tscn" id="7_34ly0"]
+[ext_resource type="PackedScene" uid="uid://dso2a0q3yel65" path="res://mobs/ufo.tscn" id="7_73xno"]
+[ext_resource type="PackedScene" uid="uid://b6uyhjen1o1me" path="res://weapons/cannon.tscn" id="8_bt2bh"]
+[ext_resource type="ArrayMesh" uid="uid://t3k8mju3rqmb" path="res://assets/Models/woodStructure.obj" id="9_spyf3"]
+[ext_resource type="Texture2D" uid="uid://b4pxuroootdxe" path="res://assets/Textures/weapon_cannon_S.png" id="10_0bicd"]
+[ext_resource type="Theme" uid="uid://2egims5j20f3" path="res://themes/shop_theme.tres" id="10_32rue"]
+[ext_resource type="ArrayMesh" uid="uid://bunmdimqfbkqc" path="res://assets/Models/towerRound_sampleF.obj" id="12_xsvve"]
+[ext_resource type="Texture2D" uid="uid://bunwfwxfj52ep" path="res://assets/Textures/weapon_blaster_S.png" id="14_1skkj"]
+
+[sub_resource type="Environment" id="Environment_svk8g"]
+background_mode = 1
+background_color = Color(0.830547, 0.720328, 0.803035, 1)
+ambient_light_color = Color(0.185497, 0.41621, 1, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_qgu21"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.497862, 0, 6.48905, 0, 0, 0, 0, 0, 0, -0.497862, 0, 5.49998, 0, 0, 0, 0, 0, 0, 0.48264, 0, 5.4743, 0, 0, 0, 0, 0, 0, 0.481215, 0, 4.48094, 0, 0, 0, 0, 0, 0, 1.52024, 0, 4.49093, 0, 0, 0, 0, 0, 0, 1.53023, 0, 3.51185, 0, 0, 0, 0, 0, 0, 2.49931, 0, 3.49187, 0, 0, 0, 0, 0, 0, 2.48789, 0, 0.420465, 0, 0, 0, 0, 0, 0, 1.49026, 0, 0.434758, 0, 0, 0, 0, 0, 0, 1.4917, 0, -0.492926, 0, 0, 0, 0, 0, 0, 0.491205, 0, -0.504355, 0, 0, 0, 0, 0, 0, 0.474075, 0, 0.464744, 0, 0, 0, 0, 0, 0, -1.45696, 0, 0.454739, 0, 0, 0, 0, 0, 0, -1.49692, 0, -0.494365, 0, 0, 0, 0, 0, 0, -2.49883, 0, -0.482935, 0, 0, 0, 0, 0, 0, -2.51596, 0, 0.464744, 0, 0, 0, 0, 0, 0, -3.47505, 0, 0.474721, 0, 0, 0, 0, 0, 0, -3.45507, 0, 3.47189, 0, 0, 0, 0, 0, 0, -2.50597, 0, 3.50186, 0, 0, 0, 0, 0, 0, -2.49598, 0, 4.49093, 0, 0, 0, 0, 0, 0, -1.50691, 0, 4.51091, 0, 0, 0, 0, 0, 0, -1.48693, 0, 5.46002),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jomb"]
+
+[node name="Heart" type="Node3D"]
+script = ExtResource("1_sqg53")
+UFO = ExtResource("7_73xno")
+num_ufos = 0
+CannonScene = ExtResource("8_bt2bh")
+BlasterScene = ExtResource("3_5jomb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_svk8g")
+
+[node name="TileEndRoundSpawn" parent="." instance=ExtResource("1_yagpt")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.5, 0, 6.5)
+
+[node name="TileEnd" parent="." instance=ExtResource("2_w8q0k")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 0, 5.5)
+
+[node name="Tower" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 5.5)
+mesh = ExtResource("12_xsvve")
+
+[node name="TowerHealth" parent="Tower" instance=ExtResource("7_34ly0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="GrassTiles" type="Node3D" parent="."]
+
+[node name="TileGrass" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 1.5)
+
+[node name="TileGrass2" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
+
+[node name="TileGrass3" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5)
+
+[node name="TileGrass4" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1.5)
+
+[node name="TileGrass5" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1.5)
+
+[node name="TileGrass6" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5)
+
+[node name="TileGrass7" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2.5)
+
+[node name="TileGrass8" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 2.5)
+
+[node name="TileGrass9" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2.5)
+
+[node name="TileGrass10" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 2.5)
+
+[node name="TileGrass11" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 3.5)
+
+[node name="TileGrass12" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 3.5)
+
+[node name="TileGrass13" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3.5)
+
+[node name="TileGrass14" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 4.5)
+
+[node name="TileGrass15" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -0.5)
+
+[node name="TileGrass16" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="TileGrass17" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -0.5)
+
+[node name="TileGrass18" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 4.5)
+
+[node name="TileGrass19" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 5.5)
+
+[node name="TileGrass20" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 5.5)
+
+[node name="TileGrass21" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 6.5)
+
+[node name="TileGrass22" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 6.5)
+
+[node name="TileGrass23" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 6.5)
+
+[node name="TileGrass24" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 6.5)
+
+[node name="TileGrass25" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 6.5)
+
+[node name="TileGrass26" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 5.5)
+
+[node name="TileGrass27" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 5.5)
+
+[node name="TileGrass28" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 4.5)
+
+[node name="TileGrass29" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 6.5)
+
+[node name="TileGrass30" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 5.5)
+
+[node name="TileGrass31" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 4.5)
+
+[node name="TileGrass32" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 6.5)
+
+[node name="TileGrass42" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -0.5)
+
+[node name="TileGrass43" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 0.5)
+
+[node name="TileGrass44" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -0.5)
+
+[node name="TileGrass45" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0.5)
+
+[node name="TileGrass33" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 2.5)
+
+[node name="TileGrass34" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 1.5)
+
+[node name="TileGrass35" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 3.5)
+
+[node name="TileGrass36" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 5.5)
+
+[node name="TileGrass37" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 4.5)
+
+[node name="TileGrass38" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 6.5)
+
+[node name="TileGrass39" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2.5)
+
+[node name="TileGrass40" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.5)
+
+[node name="TileGrass41" parent="GrassTiles" instance=ExtResource("3_n7se3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
+
+[node name="PathTiles" type="Node3D" parent="."]
+
+[node name="TileCornerSquare" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 5.5)
+
+[node name="TileCornerSquare2" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 5.5)
+
+[node name="TileCornerSquare3" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4.5)
+
+[node name="TileCornerSquare4" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.5, 0, 4.5)
+
+[node name="TileCornerSquare5" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 3.5)
+
+[node name="TileCornerSquare6" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.5, 0, 3.5)
+
+[node name="TileStraight" parent="PathTiles" instance=ExtResource("5_56yx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+
+[node name="TileStraight2" parent="PathTiles" instance=ExtResource("5_56yx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+
+[node name="TileCornerSquare7" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.5, 0, 0.5)
+
+[node name="TileCornerSquare8" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0, 0.5)
+
+[node name="TileCornerSquare9" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, -0.5)
+
+[node name="TileCornerSquare10" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="TileCornerSquare11" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, 0, 0.5)
+
+[node name="TileStraight3" parent="PathTiles" instance=ExtResource("5_56yx2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5, 0, 0.5)
+
+[node name="TileCornerSquare12" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 0, 0.5)
+
+[node name="TileCornerSquare13" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 0, -0.5)
+
+[node name="TileCornerSquare14" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -0.5)
+
+[node name="TileCornerSquare15" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.5, 0, 0.5)
+
+[node name="TileCornerSquare16" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0.5)
+
+[node name="TileStraight4" parent="PathTiles" instance=ExtResource("5_56yx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.5)
+
+[node name="TileStraight5" parent="PathTiles" instance=ExtResource("5_56yx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 2.5)
+
+[node name="TileCornerSquare17" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0, 3.5)
+
+[node name="TileCornerSquare18" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.5, 0, 3.5)
+
+[node name="TileCornerSquare19" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 4.5)
+
+[node name="TileCornerSquare20" parent="PathTiles" instance=ExtResource("4_ph8ir")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 0, 4.5)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.965926, 0.148452, 0.212012, 0, 0.819152, -0.573576, -0.258819, 0.554032, 0.79124, 1, 0, 3)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, 1, 0, -1, -2.98023e-08, 0, 8, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31452, 2.65416, 3.11978)
+light_energy = 4.0
+omni_range = 8.0
+
+[node name="WoodStructure" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.25, 5.5)
+mesh = ExtResource("9_spyf3")
+
+[node name="Weapons" type="Node3D" parent="."]
+
+[node name="Path" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+curve = SubResource("Curve3D_qgu21")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_32rue")
+
+[node name="ShopPanel" type="Panel" parent="CanvasLayer/UI"]
+visible = false
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/ShopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="BuyCannon" type="Button" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "¤ 250"
+icon = ExtResource("10_0bicd")
+
+[node name="BuyBlaster" type="Button" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "¤ 400"
+icon = ExtResource("14_1skkj")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="NextWaveButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -70.0
+offset_right = 161.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "Next Wave"
+
+[node name="Currency" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 109.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 24
+text = "¤ 350"
+
+[node name="Wave" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_right = 153.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 24
+text = "Wave 0"
+
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer/UI"]
+visible = false
+self_modulate = Color(0, 0, 0, 0.796078)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jomb")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -13.5
+offset_right = 83.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+
+[node name="PlayAgain" type="Button" parent="CanvasLayer/UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.5
+offset_top = 72.5
+offset_right = -56.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Again"
+
+[node name="Quit" type="Button" parent="CanvasLayer/UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 56.5
+offset_top = 72.5
+offset_right = 243.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/UI/ShopPanel/VBoxContainer/BuyCannon" to="." method="_on_buy_cannon_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/ShopPanel/VBoxContainer/BuyBlaster" to="." method="_on_buy_blaster_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/ShopPanel/VBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/NextWaveButton" to="." method="_on_next_wave_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/GameOverPanel/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/GameOverPanel/Quit" to="." method="_on_quit_pressed"]

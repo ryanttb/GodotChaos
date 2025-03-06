@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dso2a0q3yel65"]
+
+[ext_resource type="Script" uid="uid://bnwkrkk78mw5v" path="res://mobs/ufo.gd" id="1_q53mr"]
+[ext_resource type="ArrayMesh" uid="uid://bgj0iiirvo0xo" path="res://assets/Models/enemy_ufoRed.obj" id="1_x6wqv"]
+[ext_resource type="PackedScene" uid="uid://c6s0gfuwt6gnx" path="res://mobs/health_bar.tscn" id="3_4pw4x"]
+[ext_resource type="PackedScene" uid="uid://c5ckfonrjbo74" path="res://mobs/health_bar_3d.tscn" id="4_1xk8f"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3boh2"]
+height = 1.0
+
+[node name="UFO" type="PathFollow3D"]
+
+[node name="UFOBody" type="CharacterBody3D" parent="." groups=["Enemies"]]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+collision_mask = 3
+script = ExtResource("1_q53mr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UFOBody"]
+mesh = ExtResource("1_x6wqv")
+
+[node name="HealthBar" parent="UFOBody/MeshInstance3D" instance=ExtResource("3_4pw4x")]
+visible = false
+offset_right = 192.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UFOBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_3boh2")
+
+[node name="HealthBar3D" parent="UFOBody" instance=ExtResource("4_1xk8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
