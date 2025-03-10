@@ -1,0 +1,125 @@
+[gd_scene load_steps=27 format=4 uid="uid://cktmqqwaofvfb"]
+
+[ext_resource type="Script" uid="uid://dc5q2d5p0lk8d" path="res://waves/wave_01.gd" id="1_k8dxg"]
+[ext_resource type="Texture2D" uid="uid://cceeojqoh1jba" path="res://assets/floor/cobble_blood_1_old.png" id="1_n826s"]
+[ext_resource type="Texture2D" uid="uid://smftn75qi2bg" path="res://assets/floor/cobble_blood_2_old.png" id="2_k8fry"]
+[ext_resource type="Texture2D" uid="uid://cxdpmrtqfdhwn" path="res://assets/floor/cobble_blood_3_new.png" id="3_v17e7"]
+[ext_resource type="Texture2D" uid="uid://bpmvy44sw0m5x" path="res://assets/floor/crystal_floor_2.png" id="4_oxtgi"]
+[ext_resource type="Texture2D" uid="uid://cmpdfdoayjyij" path="res://assets/floor/dirt_0_old.png" id="5_pmaur"]
+[ext_resource type="Texture2D" uid="uid://mlx5nw78okct" path="res://assets/floor/dirt_2_new.png" id="6_bl0rg"]
+[ext_resource type="Texture2D" uid="uid://bjy3ktl4ltev0" path="res://assets/floor/dirt_full_new.png" id="7_iw84f"]
+[ext_resource type="Texture2D" uid="uid://d3h4mxgwa36hp" path="res://assets/floor/floor_sand_stone_4.png" id="8_hkswb"]
+[ext_resource type="Texture2D" uid="uid://bahvly4u8yaw3" path="res://assets/floor/floor_sand_stone_5.png" id="9_ka61a"]
+[ext_resource type="PackedScene" uid="uid://b33rrxnm2fkxu" path="res://players/player.tscn" id="10_1a7xj"]
+[ext_resource type="PackedScene" uid="uid://y8mhpwmv1th0" path="res://enemies/enemy_spawner.tscn" id="13_8reui"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s46do"]
+texture = ExtResource("1_n826s")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3jp8s"]
+texture = ExtResource("2_k8fry")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ykko8"]
+texture = ExtResource("3_v17e7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bnbls"]
+texture = ExtResource("4_oxtgi")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmoe6"]
+texture = ExtResource("5_pmaur")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n5tql"]
+texture = ExtResource("6_bl0rg")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g7dap"]
+texture = ExtResource("7_iw84f")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tfvif"]
+texture = ExtResource("8_hkswb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_350mq"]
+texture = ExtResource("9_ka61a")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yxidf"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_s46do")
+sources/1 = SubResource("TileSetAtlasSource_3jp8s")
+sources/2 = SubResource("TileSetAtlasSource_ykko8")
+sources/3 = SubResource("TileSetAtlasSource_bnbls")
+sources/4 = SubResource("TileSetAtlasSource_dmoe6")
+sources/5 = SubResource("TileSetAtlasSource_n5tql")
+sources/6 = SubResource("TileSetAtlasSource_g7dap")
+sources/7 = SubResource("TileSetAtlasSource_tfvif")
+sources/8 = SubResource("TileSetAtlasSource_350mq")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1a7xj"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k8dxg"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8b5d7"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8reui"]
+
+[node name="Wave01" type="Node2D"]
+script = ExtResource("1_k8dxg")
+
+[node name="BackgroundTileMap" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAABgAAAAAAAAABAAAABgAAAAAAAAACAAAABgAAAAAAAAADAAAABgAAAAAAAAAEAAAABgAAAAAAAAAFAAAABgAAAAAAAAAGAAAABQAAAAAAAAAHAAAABQAAAAAAAAAIAAAABgAAAAAAAAAJAAAABQAAAAAAAAAKAAAABQAAAAAAAAALAAAABgAAAAAAAAAMAAAABgAAAAAAAAANAAAABgAAAAAAAAAOAAAABgAAAAAAAAAPAAAABgAAAAAAAAAQAAAABgAAAAAAAAARAAAABgAAAAAAAAAAAAEABgAAAAAAAAABAAEABgAAAAAAAAACAAEABgAAAAAAAAADAAEABgAAAAAAAAAEAAEABgAAAAAAAAAFAAEABQAAAAAAAAAGAAEACAAAAAAAAAAHAAEACAAAAAAAAAAIAAEABQAAAAAAAAAJAAEACAAAAAAAAAAKAAEACAAAAAAAAAALAAEABQAAAAAAAAAMAAEABgAAAAAAAAANAAEABgAAAAAAAAAOAAEABgAAAAAAAAAPAAEABgAAAAAAAAAQAAEABgAAAAAAAAARAAEABgAAAAAAAAARAAIABgAAAAAAAAAQAAIABgAAAAAAAAAPAAIABgAAAAAAAAAOAAIABgAAAAAAAAANAAIABgAAAAAAAAAMAAIABQAAAAAAAAALAAIACAAAAAAAAAAKAAIACAAAAAAAAAAJAAIACAAAAAAAAAAIAAIACAAAAAAAAAAHAAIACAAAAAAAAAAGAAIACAAAAAAAAAAFAAIACAAAAAAAAAAEAAIABQAAAAAAAAADAAIABgAAAAAAAAACAAIABgAAAAAAAAABAAIABgAAAAAAAAAAAAIABgAAAAAAAAAAAAMABgAAAAAAAAABAAMABgAAAAAAAAACAAMABgAAAAAAAAADAAMABgAAAAAAAAAEAAMABQAAAAAAAAAFAAMACAAAAAAAAAAGAAMACAAAAAAAAAAKAAMACAAAAAAAAAAJAAMACAAAAAAAAAAIAAMACAAAAAAAAAAHAAMACAAAAAAAAAALAAMACAAAAAAAAAAMAAMABQAAAAAAAAANAAMABgAAAAAAAAAOAAMABgAAAAAAAAAPAAMABgAAAAAAAAAQAAMABgAAAAAAAAARAAMABgAAAAAAAAAAAAQABgAAAAAAAAAAAAUABgAAAAAAAAAAAAYABgAAAAAAAAAAAAcABgAAAAAAAAAAAAgABgAAAAAAAAAAAAkABgAAAAAAAAABAAQABgAAAAAAAAABAAUABgAAAAAAAAABAAYABgAAAAAAAAABAAcABgAAAAAAAAABAAgABgAAAAAAAAABAAkABgAAAAAAAAACAAQABgAAAAAAAAACAAUABgAAAAAAAAACAAYABgAAAAAAAAACAAcABgAAAAAAAAACAAgABgAAAAAAAAACAAkABgAAAAAAAAADAAQABgAAAAAAAAADAAUABgAAAAAAAAADAAYABgAAAAAAAAADAAcABgAAAAAAAAADAAgABgAAAAAAAAADAAkABgAAAAAAAAAEAAQABgAAAAAAAAAEAAUABgAAAAAAAAAEAAYABgAAAAAAAAAEAAcABgAAAAAAAAAEAAgABgAAAAAAAAAEAAkABgAAAAAAAAAFAAQABQAAAAAAAAAFAAUABQAAAAAAAAAFAAYABgAAAAAAAAAFAAcABgAAAAAAAAAFAAgABgAAAAAAAAAFAAkABgAAAAAAAAAGAAQACAAAAAAAAAAGAAUACAAAAAAAAAAGAAYABQAAAAAAAAAGAAcABgAAAAAAAAAGAAgABgAAAAAAAAAGAAkABgAAAAAAAAAHAAQACAAAAAAAAAAHAAUACAAAAAAAAAAHAAYACAAAAAAAAAAHAAcABQAAAAAAAAAHAAgABgAAAAAAAAAHAAkABgAAAAAAAAAIAAQACAAAAAAAAAAIAAUACAAAAAAAAAAIAAYACAAAAAAAAAAIAAcACAAAAAAAAAAIAAgABQAAAAAAAAAIAAkABgAAAAAAAAAJAAQACAAAAAAAAAAJAAUACAAAAAAAAAAJAAYACAAAAAAAAAAJAAcABQAAAAAAAAAJAAgABgAAAAAAAAAJAAkABgAAAAAAAAAKAAQACAAAAAAAAAAKAAUACAAAAAAAAAAKAAYABQAAAAAAAAAKAAgABgAAAAAAAAAKAAkABgAAAAAAAAALAAQABQAAAAAAAAALAAUABQAAAAAAAAALAAYABgAAAAAAAAALAAcABgAAAAAAAAALAAgABgAAAAAAAAALAAkABgAAAAAAAAAMAAQABgAAAAAAAAAMAAUABgAAAAAAAAAMAAYABgAAAAAAAAAMAAcABgAAAAAAAAAMAAgABgAAAAAAAAAMAAkABgAAAAAAAAANAAQABgAAAAAAAAANAAUABgAAAAAAAAANAAYABgAAAAAAAAANAAcABgAAAAAAAAANAAgABgAAAAAAAAANAAkABgAAAAAAAAAOAAQABgAAAAAAAAAOAAUABgAAAAAAAAAOAAYABgAAAAAAAAAOAAcABgAAAAAAAAAOAAgABgAAAAAAAAAOAAkABgAAAAAAAAAPAAQABgAAAAAAAAAPAAUABgAAAAAAAAAPAAYABgAAAAAAAAAPAAcABgAAAAAAAAAPAAgABgAAAAAAAAAPAAkABgAAAAAAAAAQAAQABgAAAAAAAAAQAAUABgAAAAAAAAAQAAYABgAAAAAAAAAQAAcABgAAAAAAAAAQAAgABgAAAAAAAAAQAAkABgAAAAAAAAARAAQABgAAAAAAAAARAAUABgAAAAAAAAARAAYABgAAAAAAAAARAAcABgAAAAAAAAARAAgABgAAAAAAAAARAAkABgAAAAAAAAAKAAcABgAAAAAAAAA=")
+tile_set = SubResource("TileSet_yxidf")
+rendering_quadrant_size = 32
+
+[node name="Player" parent="." instance=ExtResource("10_1a7xj")]
+position = Vector2(282, 152)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 576
+limit_bottom = 320
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="WorldBoundary" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Left" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(-8, 160)
+shape = SubResource("WorldBoundaryShape2D_1a7xj")
+
+[node name="Top" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(288, -8)
+shape = SubResource("WorldBoundaryShape2D_k8dxg")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(584, 160)
+shape = SubResource("WorldBoundaryShape2D_8b5d7")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(288, 328)
+shape = SubResource("WorldBoundaryShape2D_8reui")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("13_8reui")]
+position = Vector2(209, 101)

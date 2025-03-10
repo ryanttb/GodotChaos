@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b41mo5epoxwf1"]
+
+[ext_resource type="Script" uid="uid://cj5corjg4k3if" path="res://players/bullet.gd" id="1_0qn6h"]
+[ext_resource type="Texture2D" uid="uid://cepaub5opmll0" path="res://assets/player_bullet.png" id="2_0jhv8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b0vjt"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qn6h"]
+radius = 8.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_0qn6h")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_0jhv8")
+
+[node name="SpriteCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b0vjt")
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="EnemyCollisionShape" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("CircleShape2D_0qn6h")
+
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]

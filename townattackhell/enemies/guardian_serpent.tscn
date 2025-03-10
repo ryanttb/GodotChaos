@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvj0ynuyr42f8"]
+
+[ext_resource type="Script" uid="uid://cxc6wu4k3i0al" path="res://enemies/guardian_serpent.gd" id="1_62ljh"]
+[ext_resource type="Texture2D" uid="uid://5x4awhr7eioo" path="res://assets/monsters/guardian_serpent_old.png" id="1_iry4e"]
+[ext_resource type="Script" uid="uid://br2vnowmvjjp" path="res://enemies/enemy_bullet_pool.gd" id="3_6iwm2"]
+[ext_resource type="Theme" uid="uid://mnoc56ifyf7t" path="res://themes/gameplay_theme.tres" id="3_wu2qa"]
+[ext_resource type="Texture2D" uid="uid://dkh800axkj4ev" path="res://assets/death/enemy_death_0.png" id="4_y6gxa"]
+[ext_resource type="Texture2D" uid="uid://cjprson5l01od" path="res://assets/death/enemy_death_1.png" id="5_6iwm2"]
+[ext_resource type="Texture2D" uid="uid://dshyve8s5cyfr" path="res://assets/death/enemy_death_2.png" id="6_ileds"]
+[ext_resource type="Texture2D" uid="uid://d0pl3fidw7v33" path="res://assets/death/enemy_death_3.png" id="7_ll7fp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_62ljh"]
+radius = 13.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1gp2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_y6gxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6iwm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ileds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ll7fp")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6gxa"]
+radius = 16.0312
+
+[node name="GuardianSerpent" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_62ljh")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_iry4e")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-15, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_62ljh")
+
+[node name="EnemyBulletPool" type="Node" parent="."]
+script = ExtResource("3_6iwm2")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = -20.0
+theme = ExtResource("3_wu2qa")
+value = 100.0
+show_percentage = false
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="DeathAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_s1gp2")
+animation = &"death"
+frame = 3
+frame_progress = 1.0
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_y6gxa")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="animation_finished" from="DeathAnimation" to="." method="_on_death_animation_animation_finished"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
