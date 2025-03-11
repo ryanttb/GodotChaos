@@ -24,10 +24,11 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 
 func shoot(direction: Vector2) -> void:
-	var obj: CharacterBody2D = $EnemyBulletPool.get_bullet()
-	obj.global_position = $SpawnPoint.global_position + direction
-	obj.velocity = direction * bullet_speed
-	obj.show()
+	if is_alive:
+		var obj: CharacterBody2D = $EnemyBulletPool.get_bullet()
+		obj.global_position = $SpawnPoint.global_position + direction
+		obj.velocity = direction * bullet_speed
+		obj.show()
 
 func _on_shoot_timer_timeout() -> void:
 	shoot(last_direction)

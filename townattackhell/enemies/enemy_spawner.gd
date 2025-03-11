@@ -1,6 +1,8 @@
 class_name EnemySpawner
 extends Area2D
 
+signal enemy_killed(enemy: EnemyBody)
+
 @onready var GuardianSerpentScene = preload("res://enemies/guardian_serpent.tscn")
 
 var pool_size := 4
@@ -35,6 +37,10 @@ func _on_spawn_timer_timeout() -> void:
 	obj.global_position = global_position
 	obj.set_alive()
 	obj.show()
+	
+	$SpawnTimer.wait_time = 10 - GameState.time_survived / 2
+	print("EnemySpawner wait_time: ", $SpawnTimer.wait_time)
 
 func _on_enemy_killed(enemy: EnemyBody) -> void:
+	enemy_killed.emit(enemy)
 	return_enemy(enemy)

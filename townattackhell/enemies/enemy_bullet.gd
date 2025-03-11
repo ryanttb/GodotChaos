@@ -18,6 +18,7 @@ func _on_player_detector_body_entered(body: Node2D) -> void:
 		return
 	
 	print("EnemyBullet body.name: ", body.name)
+	
 	if body.name == "WorldBoundary":
 		(get_parent() as EnemyBulletPool).return_bullet(self)
 	

@@ -19,8 +19,7 @@ shape = SubResource("CircleShape2D_531ly")
 disabled = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
+wait_time = 10.0
 autostart = true
 
 [node name="EnemyPool" type="Node" parent="."]

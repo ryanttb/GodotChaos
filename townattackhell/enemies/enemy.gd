@@ -11,6 +11,7 @@ signal enemy_killed(enemy: EnemyBody)
 var is_alive := true
 var health := 100.0
 var damage := 10.0
+var points := 5
 
 func _ready() -> void:
 	print("EnemyBody collision_layer: ", collision_layer)
@@ -43,7 +44,6 @@ func kill() -> void:
 	collision_layer = 0
 	is_alive = false
 	if is_instance_valid(death_animation):
-		
 		death_animation.show()
 		death_animation.play("death")
 		# could also: await death_animation.animation_finished

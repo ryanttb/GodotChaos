@@ -1,6 +1,8 @@
 class_name PlayerBody
 extends CharacterBody2D
 
+signal damage_taken(amount: float)
+
 const BOUNDS_MIN: Vector2 = Vector2(0, 0)
 const BOUNDS_MAX: Vector2 = Vector2(576, 320)
 
@@ -8,8 +10,6 @@ const BOUNDS_MAX: Vector2 = Vector2(576, 320)
 @export var bullet_speed := 128
 
 var last_direction := Vector2.DOWN
-
-var health := 100.0
 
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
@@ -45,8 +45,4 @@ func is_zero(direction: Vector2) -> bool:
 	return direction == Vector2.ZERO
 
 func take_damage(amount: float) -> void:
-	health -= amount
-	$HealthBar.value = health
-	if health <= 0:
-		print("Player dead")
-		get_tree().paused = true
+	damage_taken.emit(amount)
