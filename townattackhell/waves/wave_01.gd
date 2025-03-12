@@ -9,7 +9,6 @@ func _on_player_damage_taken(amount: float) -> void:
 	if GameState.player_health <= 0:
 		get_tree().paused = true
 		$UI/GameOver.show()
-		#get_tree().change_scene_to_file("res://ui/game_over.tscn")
 
 func _on_enemy_spawner_enemy_killed(enemy: EnemyBody) -> void:
 	GameState.score += enemy.points

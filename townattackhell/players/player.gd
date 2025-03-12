@@ -37,7 +37,6 @@ func shoot(direction: Vector2) -> void:
 	var obj: CharacterBody2D = $BulletPool.get_bullet()
 	obj.global_position = global_position + direction * 16
 	obj.velocity = direction * bullet_speed
-	obj.show()
 
 func is_zero(direction: Vector2) -> bool:
 	direction.x = 0.0 if abs(direction.x) < 0.1 else direction.x

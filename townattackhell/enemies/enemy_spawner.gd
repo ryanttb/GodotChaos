@@ -15,6 +15,7 @@ func add_to_pool(size: int):
 	for i in size:
 		var obj: EnemyBody = GuardianSerpentScene.instantiate() as EnemyBody
 		obj.visible = false
+		obj.is_alive = false
 		obj.enemy_killed.connect(_on_enemy_killed)
 		enemy_pool.append(obj)
 		$EnemyPool.add_child(obj)
@@ -31,6 +32,7 @@ func get_enemy() -> Node2D:
 func return_enemy(enemy: Node2D) -> void:
 	var obj: EnemyBody = enemy as EnemyBody
 	obj.visible = false
+	obj.is_alive = false
 
 func _on_spawn_timer_timeout() -> void:
 	var obj: EnemyBody = get_enemy()

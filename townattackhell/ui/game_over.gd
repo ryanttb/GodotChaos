@@ -10,4 +10,3 @@ func _on_play_again_pressed() -> void:
 	
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	#get_tree().change_scene_to_file("res://waves/wave_01.tscn")

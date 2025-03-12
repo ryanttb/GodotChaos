@@ -11,19 +11,22 @@ func _ready() -> void:
 
 func add_to_pool(size: int):
 	for i in size:
-		var obj: Node2D = BulletScene.instantiate()
-		obj.visible = false
+		var obj: BulletBody = BulletScene.instantiate()
+		obj.deactivate()
 		bullet_pool.append(obj)
 		add_child(obj)
 	print("BulletPool size: " + str(bullet_pool.size()))
 
 func get_bullet() -> Node2D:
 	for bullet in bullet_pool:
-		if not bullet.visible:
+		var bullet_body: BulletBody = bullet
+		if not bullet_body.active:
+			bullet_body.activate()
 			return bullet
 	
 	add_to_pool(pool_size)
 	return get_bullet()
 
 func return_bullet(bullet: Node2D) -> void:
-	bullet.hide()
+	var bullet_body: BulletBody = bullet
+	bullet_body.deactivate()
