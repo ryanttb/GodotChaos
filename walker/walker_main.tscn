@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=3 uid="uid://bmn3c8dmbvg8q"]
 
-[ext_resource type="Script" path="res://walker_main.gd" id="1_1mns7"]
+[ext_resource type="Script" uid="uid://ckv6fbhwmqcdf" path="res://walker_main.gd" id="1_1mns7"]
 [ext_resource type="Material" uid="uid://drm3clvqpis42" path="res://assets/Models/TerrainMaterial.tres" id="1_oq0lc"]
 [ext_resource type="ArrayMesh" uid="uid://cndcxj6gf0smr" path="res://assets/Models/Terrain.obj" id="2_gqtmj"]
 [ext_resource type="PackedScene" uid="uid://cfr7h8g71lsm2" path="res://assets/Models/Tree_0/Tree.tscn" id="3_pklkr"]
 [ext_resource type="PackedScene" uid="uid://dwxdl6tkvd55k" path="res://assets/Models/Rock_0/Rock.tscn" id="4_uw6mu"]
 [ext_resource type="Material" uid="uid://ebxocxh3nprw" path="res://assets/Models/RockyTerrainMaterial.tres" id="5_5hgj0"]
-[ext_resource type="Script" path="res://player.gd" id="5_dei4v"]
+[ext_resource type="Script" uid="uid://dj5v8mwskiooa" path="res://player.gd" id="5_dei4v"]
 [ext_resource type="PackedScene" uid="uid://dut3gyo4e7qbo" path="res://assets/Models/Pedestal/Pedestal.tscn" id="6_tjqha"]
-[ext_resource type="Script" path="res://interaction_controller.gd" id="7_g1bi2"]
+[ext_resource type="Script" uid="uid://dd52lh4ieqac8" path="res://interaction_controller.gd" id="7_g1bi2"]
 [ext_resource type="Theme" uid="uid://dtw2fuyfhbn8v" path="res://assets/theme/hud_theme.tres" id="7_k6vo3"]
 [ext_resource type="PackedScene" uid="uid://chafvxykrqvc8" path="res://bug.tscn" id="11_i4123"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dut3gyo4e7qbo"]
 
 [ext_resource type="Material" uid="uid://disdcqmbkftbi" path="res://assets/Models/Pedestal/PedestalMaterial.tres" id="1_44e5k"]
-[ext_resource type="Script" path="res://assets/Models/Pedestal/pedestal.gd" id="1_tmmq0"]
+[ext_resource type="Script" uid="uid://b7qxocamfrc58" path="res://assets/Models/Pedestal/pedestal.gd" id="1_tmmq0"]
 [ext_resource type="ArrayMesh" uid="uid://c1ldxdvsp4ywh" path="res://assets/Models/Pedestal/Pedestal.obj" id="2_83v8d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0mig"]

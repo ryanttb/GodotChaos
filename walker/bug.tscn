@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://chafvxykrqvc8"]
 
-[ext_resource type="Script" path="res://bugs_ai_controller.gd" id="1_4kag3"]
+[ext_resource type="Script" uid="uid://bd53vrsvel38x" path="res://bugs_ai_controller.gd" id="1_4kag3"]
 [ext_resource type="PackedScene" uid="uid://c2tcjs26j25ww" path="res://assets/Models/Alien/alien-bug.glb" id="1_qugpo"]
-[ext_resource type="Script" path="res://state_machine.gd" id="3_1bw5c"]
-[ext_resource type="Script" path="res://wander_state.gd" id="4_k3ct6"]
-[ext_resource type="Script" path="res://chase_state.gd" id="5_1i8bh"]
-[ext_resource type="Script" path="res://flee_state.gd" id="6_3keyt"]
+[ext_resource type="Script" uid="uid://b5sayopmdg7oy" path="res://state_machine.gd" id="3_1bw5c"]
+[ext_resource type="Script" uid="uid://du4j34n2aedm1" path="res://wander_state.gd" id="4_k3ct6"]
+[ext_resource type="Script" uid="uid://gqcaekvtnxil" path="res://chase_state.gd" id="5_1i8bh"]
+[ext_resource type="Script" uid="uid://pjvaxbi50e5x" path="res://flee_state.gd" id="6_3keyt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_08avw"]
 height = 0.6
