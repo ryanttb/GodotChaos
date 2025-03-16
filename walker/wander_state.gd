@@ -12,7 +12,7 @@ extends State
 var home_position: Vector3
 
 func _enter() -> void:
-	print("WanderState enter")
+	#print("WanderState enter")
 	super._enter()
 	
 	controller.is_stopped = false
@@ -28,7 +28,7 @@ func _navigation_complete():
 		new_wander_position()
 	
 func new_wander_position():
-	print("WanderState new_wander_position")
+	#print("WanderState new_wander_position")
 	var pos = home_position + random_offset() * randf_range(0, max_wander_range)
 	controller.move_to_position(pos)
 

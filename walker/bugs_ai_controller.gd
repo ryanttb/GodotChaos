@@ -1,6 +1,8 @@
 class_name BugsAiController
 extends CharacterBody3D
 
+signal player_caught
+
 @export var walk_speed := 1.0
 @export var run_speed := 2.5
 
@@ -57,7 +59,7 @@ func _physics_process(delta: float) -> void:
 
 # agent path is generated when we assign the target_position
 func move_to_position(to_position: Vector3, adjust_position: bool = true):
-	print("BugsAiController move_to_position to_position: ", to_position)
+	#print("BugsAiController move_to_position to_position: ", to_position)
 	if agent == null:
 		return
 	
@@ -73,4 +75,7 @@ func move_to_position(to_position: Vector3, adjust_position: bool = true):
 	else:
 		agent.target_position = to_position
 	
-	print("  target_position: ", agent.target_position)
+	#print("  target_position: ", agent.target_position)
+
+func _on_chase_player_caught() -> void:
+	player_caught.emit()

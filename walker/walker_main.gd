@@ -12,7 +12,13 @@ extends Node3D
 @export var PedestalScene: PackedScene
 @export var num_pedestals := 4
 
+@export_group("Chalices")
+@export var chalice_item: Item
+@export var num_chalices := 8
+@export var chalices_to_win := 5
+
 var pedestals_enabled := 0
+var chalices_found := 0
 
 func _ready() -> void:
 	generate_rocks()
@@ -21,11 +27,21 @@ func _ready() -> void:
 	
 	$NavMesh.bake_navigation_mesh()
 	
-	$HUD/PedestalCount.text = "Pedestals 0/%d" % [num_pedestals]
+	update_hud()
+	
+	GlobalSignals.on_give_player_item.connect(_on_give_player_item)
+
+func _on_give_player_item(item: Item, amount: int) -> void:
+	if item == chalice_item:
+		chalices_found += amount
+		update_hud()
+		
+		if chalices_found >= chalices_to_win:
+			win_game()
 
 func _on_pedestal_enabled() -> void:
 	pedestals_enabled += 1
-	$HUD/PedestalCount.text = "Pedestals %d/%d" % [pedestals_enabled, num_pedestals]
+	update_hud()
 
 func generate_rocks() -> void:
 	for i in range(num_rocks):
@@ -53,3 +69,26 @@ func generate_pedestals() -> void:
 		obj.position.z = randf_range(-24, 24)
 		obj.rotate_y(randf_range(0.2, 1.5))
 		obj.connect("pedestal_enabled", _on_pedestal_enabled)
+
+func update_hud() -> void:
+	$HUD/Counts/PedestalCount.text = "Pedestals %d" % [pedestals_enabled]
+	$HUD/Counts/ChaliceCount.text = "Chalices %d" % [chalices_found]
+
+func win_game() -> void:
+	get_tree().paused = true
+	$Screens/WinScreen.show()
+
+func lose_game() -> void:
+	get_tree().paused = true
+	$Screens/LoseScreen.show()
+
+func _on_play_again_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_try_again_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_bug_player_caught() -> void:
+	lose_game()

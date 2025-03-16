@@ -1,7 +1,9 @@
 class_name ChaseState
 extends State
 
-@export var stop_range := 1.0 # meters from player where bug stops
+signal player_caught
+
+@export var stop_range := 2.0 # meters from player where bug stops
 @export var lose_interest_range := 10.0 # stop chasing if player gets this far away
 
 var path_update_rate := 0.1 # seconds between AI path updates (in case player moves)
@@ -25,6 +27,7 @@ func _update(_delta: float):
 		controller.move_to_position(controller.player.position)
 	
 	if controller.player_distance < stop_range:
+		player_caught.emit()
 		state_machine.change_state("Flee")
 	
 	if controller.player_distance > lose_interest_range:

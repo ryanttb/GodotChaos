@@ -87,3 +87,13 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_playing and event is InputEventMouseMotion:
 		camera_look_input = event.relative	
+
+# Returns the total number of the requested item Player has in Inventory.
+func get_number_of_item(item : Item) -> int:
+	var total = 0
+	
+	for slot in $Inventory.slots:
+		if slot.item == item:
+			total += slot.quantity
+	
+	return total

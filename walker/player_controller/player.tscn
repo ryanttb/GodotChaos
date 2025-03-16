@@ -50,7 +50,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Lantern" type="Node3D" parent="Camera"]
-transform = Transform3D(0.864775, 0, -0.50216, 0, 1, 0, 0.50216, 0, 0.864775, 0.48399, 0, -0.494995)
+transform = Transform3D(0.864775, 0, -0.50216, 0, 1, 0, 0.50216, 0, 0.864775, 0.470994, 0.0655631, -0.63537)
 
 [node name="Model" type="MeshInstance3D" parent="Camera/Lantern"]
 transform = Transform3D(0.149654, 0, 0, 0, 0.149654, 0, 0, 0, 0.149654, 0, 0, 0)
@@ -59,8 +59,8 @@ mesh = ExtResource("3_kxswj")
 surface_material_override/1 = ExtResource("4_k4taa")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera/Lantern"]
-light_color = Color(1, 0.741176, 0, 1)
 light_energy = 2.0
+light_size = 0.225
 shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.5

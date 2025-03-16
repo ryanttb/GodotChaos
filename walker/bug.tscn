@@ -28,6 +28,7 @@ default_state = NodePath("Wander")
 
 [node name="Wander" type="Node" parent="StateMachine"]
 script = ExtResource("4_k3ct6")
+max_wander_range = 8.0
 controller_path = NodePath("../..")
 
 [node name="Chase" type="Node" parent="StateMachine"]
@@ -39,3 +40,4 @@ script = ExtResource("6_3keyt")
 controller_path = NodePath("../..")
 
 [connection signal="navigation_finished" from="NavigationAgent3D" to="StateMachine" method="_on_navigation_finished"]
+[connection signal="player_caught" from="StateMachine/Chase" to="." method="_on_chase_player_caught"]

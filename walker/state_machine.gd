@@ -31,7 +31,7 @@ func _on_navigation_finished() -> void:
 		current_state._navigation_complete()
 
 func change_state(state_name: String) -> void:
-	print("StateMachine change_state state_name: ", state_name)
+	print("StateMachine change_state name: ", get_parent().name, ", state_name: ", state_name)
 	var new_state = states.get(state_name) as State
 	
 	if new_state == null or new_state == current_state:
