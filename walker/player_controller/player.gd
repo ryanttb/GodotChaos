@@ -19,7 +19,7 @@ var camera_look_input := Vector2.ZERO
 var is_playing := true
 var is_running := false
 
-@onready var camera: Camera3D = $Camera3D
+@onready var camera: Camera3D = $Camera
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_modifier
 
 func _ready() -> void:
