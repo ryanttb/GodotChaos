@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://rvnq3p5ebwih"]
+
+[ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="1_lrylk"]
+[ext_resource type="Script" uid="uid://mifvjw4lp6is" path="res://characters/enemies/enemy.gd" id="1_w2ybv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukr2o"]
+size = Vector2(16, 16)
+
+[node name="Ogre" type="CharacterBody2D" groups=["Enemies", "Walls"]]
+script = ExtResource("1_w2ybv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.733333, 0.054902, 0.027451, 1)
+position = Vector2(8, 8)
+texture = ExtResource("1_lrylk")
+region_enabled = true
+region_rect = Rect2(442, 34, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_ukr2o")

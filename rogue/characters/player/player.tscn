@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://gd0qxagbhxjh"]
+
+[ext_resource type="Script" uid="uid://b55nwprhn8862" path="res://characters/player/player.gd" id="1_xxgcw"]
+[ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="2_exd8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v708x"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_xxgcw"]
+resource_name = "take_damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100045, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.719518, 0.502332, 1), Color(0.654075, 0.066311, 0, 1), Color(0, 0.719518, 0.502332, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_exd8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.719518, 0.502332, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dc8e"]
+_data = {
+&"RESET": SubResource("Animation_exd8k"),
+&"take_damage": SubResource("Animation_xxgcw")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_xxgcw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.719518, 0.502332, 1)
+position = Vector2(8, 8)
+texture = ExtResource("2_exd8k")
+region_enabled = true
+region_rect = Rect2(493, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_v708x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5dc8e")
+}
