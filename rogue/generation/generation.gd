@@ -1,17 +1,30 @@
 class_name Generation
 extends Node
 
-@export_group("Rooms")
+@export_group("Room Generation")
 @export var RoomScene: PackedScene
 @export var map_width := 7
 @export var map_height := 7
 @export var rooms_to_generate := 12
 @export var min_rooms := 5  # Minimum number of rooms we want to generate
 
-@onready var player: PlayerBody = get_tree().get_first_node_in_group("Player")
+@export_group("Spawn Rates")
+@export var enemy_spawn_rate := 0.8
+@export var max_enemies_per_room := 2
 
-const PIXELS_PER_BLOCK := 16
-const BLOCKS_PER_ROOM := 17
+@export var coin_spawn_rate := 0.5
+@export var max_coins_per_room := 3
+
+@export var health_item_spawn_rate := 0.5
+@export var max_health_items_per_room := 1
+
+@export var key_spawn_rate := 0.5
+@export var max_keys_per_room := 1
+
+@export var exit_door_spawn_rate := 0.5
+@export var max_exit_doors_per_room := 1
+
+@onready var player: PlayerBody = get_tree().get_first_node_in_group("Player")
 
 var room_count := 0
 var rooms_instantiated: bool = false
@@ -119,7 +132,7 @@ func instantiate_rooms() -> void:
 			if map[x][y]:
 				var room_pos: Vector2i = Vector2i(x, y)
 				var room_node: RoomNode = RoomScene.instantiate()
-				room_node.position = room_pos * PIXELS_PER_BLOCK * BLOCKS_PER_ROOM
+				room_node.position = room_pos * GameState.PIXELS_PER_BLOCK * GameState.BLOCKS_PER_ROOM
 
 				if y > 0 and map[x][y - 1]:
 					room_node.open_door(Vector2.UP)
@@ -130,14 +143,16 @@ func instantiate_rooms() -> void:
 				if x > 0 and map[x - 1][y]:
 					room_node.open_door(Vector2.LEFT)
 				
-				if room_pos == first_room_pos:
-					room_node.generation = self
-				
+				room_node.generation = self
+				room_node.room_position = room_pos
+
 				room_nodes.append(room_node)
-				
+
 				var room_root = get_tree().get_first_node_in_group("RoomRoot")
 				if is_instance_valid(room_root):
 					room_root.add_child(room_node)
+
+				room_node.spawn_nodes()
 
 	rooms_instantiated = true
 

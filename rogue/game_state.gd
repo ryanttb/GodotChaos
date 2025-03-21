@@ -1,5 +1,8 @@
 extends Node
 
+const PIXELS_PER_BLOCK := 16
+const BLOCKS_PER_ROOM := 17
+
 var player_health: int = 100
 var player_max_health: int = 100
 

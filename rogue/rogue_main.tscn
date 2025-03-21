@@ -1,27 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf840r2f6l4w"]
+[gd_scene load_steps=7 format=3 uid="uid://bf840r2f6l4w"]
 
 [ext_resource type="Script" uid="uid://b3poj83acwit2" path="res://rogue_main.gd" id="1_mdf8t"]
 [ext_resource type="PackedScene" uid="uid://5xd50whig3rw" path="res://rooms/room.tscn" id="1_v708x"]
 [ext_resource type="PackedScene" uid="uid://gd0qxagbhxjh" path="res://characters/player/player.tscn" id="2_oq318"]
 [ext_resource type="PackedScene" uid="uid://bcjdus5iw8uxh" path="res://characters/enemies/skeleton.tscn" id="2_rswl3"]
 [ext_resource type="Script" uid="uid://cwlutb2fagx20" path="res://generation/generation.gd" id="3_v708x"]
+[ext_resource type="PackedScene" uid="uid://cgpc0p36yhi1y" path="res://items/health_item.tscn" id="4_mdf8t"]
 
-[node name="RogueMain" type="Node2D"]
+[node name="RogueMain" type="Node"]
 script = ExtResource("1_mdf8t")
 
-[node name="Rooms" type="Node2D" parent="." groups=["RoomRoot"]]
+[node name="Rooms" type="Node" parent="." groups=["RoomRoot"]]
 
-[node name="Players" type="Node2D" parent="."]
+[node name="Players" type="Node" parent="."]
 
 [node name="Player" parent="Players" groups=["Player"] instance=ExtResource("2_oq318")]
 position = Vector2(112, 112)
 
 [node name="Camera2D" type="Camera2D" parent="Players/Player"]
-zoom = Vector2(2, 2)
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node" parent="." groups=["EnemiesRoot"]]
 
 [node name="Skeleton" parent="Enemies" instance=ExtResource("2_rswl3")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthItem" parent="Items" instance=ExtResource("4_mdf8t")]
+position = Vector2(48, 48)
 
 [node name="Generation" type="Node" parent="."]
 script = ExtResource("3_v708x")

@@ -8,7 +8,8 @@ func _ready() -> void:
 	pass
 
 func query_ray(start_pos: Vector2, direction: Vector2) -> Dictionary:
-	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var world: World2D = get_world_2d()
+	var space_state: PhysicsDirectSpaceState2D = world.direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(start_pos, start_pos + GRID_SIZE * direction)
 	
 	# will have all info about collisions of ray
@@ -16,7 +17,7 @@ func query_ray(start_pos: Vector2, direction: Vector2) -> Dictionary:
 
 func is_wall_in_direction(direction: Vector2) -> bool:
 	# start ray slightly offset from character position to avoid edge cases
-	var start_pos = global_position + direction * 1.0
+	var start_pos = global_position + direction
 	var result = query_ray(start_pos, direction)
 	
 	# return true if ray hit a wall

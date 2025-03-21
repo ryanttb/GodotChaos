@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://5xd50whig3rw"]
+[gd_scene load_steps=7 format=4 uid="uid://5xd50whig3rw"]
 
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="1_cxd3j"]
 [ext_resource type="Script" uid="uid://b3y2bw2mmpsd2" path="res://rooms/room.gd" id="1_pmtbo"]
+[ext_resource type="PackedScene" uid="uid://bcjdus5iw8uxh" path="res://characters/enemies/skeleton.tscn" id="2_ya37f"]
+[ext_resource type="PackedScene" uid="uid://cgpc0p36yhi1y" path="res://items/health_item.tscn" id="3_sdog0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oq318"]
 texture = ExtResource("1_cxd3j")
@@ -1086,6 +1088,8 @@ sources/0 = SubResource("TileSetAtlasSource_oq318")
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_pmtbo")
+EnemyScene = ExtResource("2_ya37f")
+HealthItemScene = ExtResource("3_sdog0")
 
 [node name="Base" type="TileMapLayer" parent="." groups=["Walls"]]
 tile_map_data = PackedByteArray("AAAAAAAAAAASAAAAAAABAAAAAAATAAAAAAAAAAkAAAASAAEAAAAAAAEAAAASAAEAAAAKAAAAAAAUAAAAAAAKAAkAAAAUAAEAAAAKAAEAAAAUAAEAAAAJAAAAAAATAAAAAAAAAAoAAAASAAIAAAAKAAoAAAAUAAIAAAABAAoAAAATAAIAAAAJAAoAAAATAAIAAAA=")
