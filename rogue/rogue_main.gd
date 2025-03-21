@@ -8,7 +8,6 @@ extends Node
 @onready var generation: Generation = $Generation
 
 const PLAYER_START_POSITION := Vector2i(3, 3)
-const PLAYER_SCALE := 1.0
 
 func _ready() -> void:
 	if not is_instance_valid(player):
@@ -17,7 +16,10 @@ func _ready() -> void:
 
 	player.moved.connect(_on_player_moved)
 
+	print("RogueMain _ready generating map seed: ", GameState.level_seed)
+
 	generation.clear_map()
+	
 	seed(GameState.level_seed)
 	generation.generate_map(PLAYER_START_POSITION.x, PLAYER_START_POSITION.y)
 	generation.print_map()
@@ -28,15 +30,7 @@ func _ready() -> void:
 		print("Enemy: ", enemy, " position: ", enemy.position)
 
 	if is_instance_valid(player):
-		player.position = (generation.first_room_pos * GameState.BLOCKS_PER_ROOM + Vector2i(2, 2)) * GameState.PIXELS_PER_BLOCK * PLAYER_SCALE
-	
-	var first_enemy: EnemyBody = enemies[0] as EnemyBody
-	if is_instance_valid(first_enemy):
-		first_enemy.position = (generation.first_room_pos * GameState.BLOCKS_PER_ROOM + Vector2i(6, 6)) * GameState.PIXELS_PER_BLOCK * PLAYER_SCALE	
-
-	var first_item: ItemArea = items[0] as ItemArea
-	if is_instance_valid(first_item):
-		first_item.position = (generation.first_room_pos * GameState.BLOCKS_PER_ROOM + Vector2i(4, 4)) * GameState.PIXELS_PER_BLOCK * PLAYER_SCALE	
+		player.global_position = (generation.first_room_pos * GameState.BLOCKS_PER_ROOM + Vector2i(GameState.ROOM_INSIDE_OFFSET + 2, GameState.ROOM_INSIDE_OFFSET + 2)) * GameState.PIXELS_PER_BLOCK
 	
 func _on_player_moved(_direction: Vector2) -> void:
 	for enemy in enemies:

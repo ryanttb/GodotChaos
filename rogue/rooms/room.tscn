@@ -1092,41 +1092,50 @@ EnemyScene = ExtResource("2_ya37f")
 HealthItemScene = ExtResource("3_sdog0")
 
 [node name="Base" type="TileMapLayer" parent="." groups=["Walls"]]
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAAAAAAAAAASAAAAAAABAAAAAAATAAAAAAAAAAkAAAASAAEAAAAAAAEAAAASAAEAAAAKAAAAAAAUAAAAAAAKAAkAAAAUAAEAAAAKAAEAAAAUAAEAAAAJAAAAAAATAAAAAAAAAAoAAAASAAIAAAAKAAoAAAAUAAIAAAABAAoAAAATAAIAAAAJAAoAAAATAAIAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="NorthWall" type="TileMapLayer" parent="." groups=["Walls"]]
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAAEAAAAAAATAAAAAAAFAAAAAAATAAAAAAAGAAAAAAATAAAAAAACAAAAAAATAAAAAAADAAAAAAATAAAAAAAHAAAAAAATAAAAAAAIAAAAAAATAAAAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="NorthDoor" type="TileMapLayer" parent="." groups=["Walls"]]
 visible = false
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAADAP7/AAASAAEAAAADAP3/AAASAAEAAAAHAP7/AAAUAAEAAAAHAP3/AAAUAAEAAAACAP//AAAUAAMAAAAIAP//AAAVAAMAAAADAP//AAATAAQAAAAHAP//AAASAAQAAAAIAAAAAAASAAQAAAACAAAAAAATAAQAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="WestWall" type="TileMapLayer" parent="." groups=["Walls"]]
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAAAAAQAAAASAAEAAAAAAAUAAAASAAEAAAAAAAYAAAASAAEAAAAAAAIAAAASAAEAAAAAAAMAAAASAAEAAAAAAAcAAAASAAEAAAAAAAgAAAASAAEAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="WestDoor" type="TileMapLayer" parent="." groups=["Walls"]]
 visible = false
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAD+/wMAAAATAAAAAAD9/wMAAAATAAAAAAD+/wcAAAATAAIAAAD9/wcAAAATAAIAAAD//wIAAAAUAAMAAAD//wMAAAATAAQAAAAAAAIAAAATAAQAAAD//wgAAAAUAAQAAAD//wcAAAATAAMAAAAAAAgAAAATAAMAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="EastWall" type="TileMapLayer" parent="." groups=["Walls"]]
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAAKAAQAAAAUAAEAAAAKAAUAAAAUAAEAAAAKAAYAAAAUAAEAAAAKAAgAAAAUAAEAAAAKAAcAAAAUAAEAAAAKAAMAAAAUAAEAAAAKAAIAAAAUAAEAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="EastDoor" type="TileMapLayer" parent="." groups=["Walls"]]
 visible = false
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAAMAAcAAAATAAIAAAANAAcAAAATAAIAAAAMAAMAAAATAAAAAAANAAMAAAATAAAAAAALAAgAAAAVAAQAAAALAAIAAAAVAAMAAAALAAMAAAASAAQAAAAKAAIAAAASAAQAAAALAAcAAAASAAMAAAAKAAgAAAASAAMAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="SouthWall" type="TileMapLayer" parent="." groups=["Walls"]]
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAAEAAoAAAATAAIAAAAFAAoAAAATAAIAAAAGAAoAAAATAAIAAAADAAoAAAATAAIAAAACAAoAAAATAAIAAAAHAAoAAAATAAIAAAAIAAoAAAATAAIAAAA=")
 tile_set = SubResource("TileSet_v708x")
 
 [node name="SouthDoor" type="TileMapLayer" parent="." groups=["Walls"]]
 visible = false
+position = Vector2(48, 48)
 tile_map_data = PackedByteArray("AAADAAwAAAASAAEAAAADAA0AAAASAAEAAAAHAAwAAAAUAAEAAAAHAA0AAAAUAAEAAAACAAsAAAAUAAQAAAADAAsAAAATAAMAAAACAAoAAAATAAMAAAAIAAsAAAAVAAQAAAAHAAsAAAASAAMAAAAIAAoAAAASAAMAAAA=")
 tile_set = SubResource("TileSet_v708x")
