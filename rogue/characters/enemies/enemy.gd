@@ -29,7 +29,7 @@ func move() -> void:
 	can_move = not is_wall_in_direction(direction)
 
 	if can_move:
-		position += direction * GRID_SIZE
+		position += direction * GameState.PIXELS_PER_BLOCK
 
 func take_damage(amount: int) -> void:
 	print("Enemy take_damage: ", amount)

@@ -17,7 +17,7 @@ func spawn_nodes() -> void:
 	for i in range(generation.max_enemies_per_room):
 		try_spawn_node(EnemyScene, "EnemiesRoot", generation.enemy_spawn_rate)
 	for i in range(generation.max_coins_per_room):
-		try_spawn_node(CoinScene, "CoinsRoot", generation.coin_spawn_rate)
+		try_spawn_node(CoinScene, "ItemsRoot", generation.coin_spawn_rate)
 	for i in range(generation.max_health_items_per_room):
 		try_spawn_node(HealthItemScene, "ItemsRoot", generation.health_item_spawn_rate)
 	for i in range(generation.max_keys_per_room):

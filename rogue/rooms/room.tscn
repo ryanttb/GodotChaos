@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://5xd50whig3rw"]
+[gd_scene load_steps=8 format=4 uid="uid://5xd50whig3rw"]
 
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="1_cxd3j"]
 [ext_resource type="Script" uid="uid://b3y2bw2mmpsd2" path="res://rooms/room.gd" id="1_pmtbo"]
 [ext_resource type="PackedScene" uid="uid://bcjdus5iw8uxh" path="res://characters/enemies/skeleton.tscn" id="2_ya37f"]
+[ext_resource type="PackedScene" uid="uid://iiag30y64ciw" path="res://items/coin.tscn" id="3_ji6aa"]
 [ext_resource type="PackedScene" uid="uid://cgpc0p36yhi1y" path="res://items/health_item.tscn" id="3_sdog0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oq318"]
@@ -80,7 +81,6 @@ separation = Vector2i(1, 1)
 18:1/0 = 0
 18:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 19:1/0 = 0
-19:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 20:1/0 = 0
 20:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 21:1/0 = 0
@@ -184,13 +184,12 @@ separation = Vector2i(1, 1)
 18:3/0 = 0
 19:3/0 = 0
 20:3/0 = 0
-20:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, 8, 8)
+20:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 21:3/0 = 0
-21:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+21:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 22:3/0 = 0
 22:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 23:3/0 = 0
-23:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 24:3/0 = 0
 25:3/0 = 0
 26:3/0 = 0
@@ -236,9 +235,9 @@ separation = Vector2i(1, 1)
 18:4/0 = 0
 19:4/0 = 0
 20:4/0 = 0
-20:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, 8, -8)
+20:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 21:4/0 = 0
-21:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, -8, -8)
+21:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 22:4/0 = 0
 23:4/0 = 0
 24:4/0 = 0
@@ -1089,6 +1088,7 @@ sources/0 = SubResource("TileSetAtlasSource_oq318")
 [node name="Room" type="Node2D"]
 script = ExtResource("1_pmtbo")
 EnemyScene = ExtResource("2_ya37f")
+CoinScene = ExtResource("3_ji6aa")
 HealthItemScene = ExtResource("3_sdog0")
 
 [node name="Base" type="TileMapLayer" parent="." groups=["Walls"]]

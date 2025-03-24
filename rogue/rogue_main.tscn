@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf840r2f6l4w"]
+[gd_scene load_steps=7 format=3 uid="uid://bf840r2f6l4w"]
 
 [ext_resource type="Script" uid="uid://b3poj83acwit2" path="res://rogue_main.gd" id="1_mdf8t"]
 [ext_resource type="PackedScene" uid="uid://5xd50whig3rw" path="res://rooms/room.tscn" id="1_v708x"]
 [ext_resource type="PackedScene" uid="uid://gd0qxagbhxjh" path="res://characters/player/player.tscn" id="2_oq318"]
 [ext_resource type="Script" uid="uid://cwlutb2fagx20" path="res://generation/generation.gd" id="3_v708x"]
+[ext_resource type="Theme" uid="uid://brp1elrqq22nv" path="res://themes/hud_theme.tres" id="5_40ken"]
+[ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="6_mdf8t"]
 
 [node name="RogueMain" type="Node"]
 script = ExtResource("1_mdf8t")
@@ -16,6 +18,7 @@ script = ExtResource("1_mdf8t")
 position = Vector2(112, 112)
 
 [node name="Camera2D" type="Camera2D" parent="Players/Player"]
+zoom = Vector2(2, 2)
 
 [node name="Enemies" type="Node" parent="." groups=["EnemiesRoot"]]
 
@@ -24,3 +27,83 @@ position = Vector2(112, 112)
 [node name="Generation" type="Node" parent="."]
 script = ExtResource("3_v708x")
 RoomScene = ExtResource("1_v708x")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HUDRoot" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_40ken")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HUDRoot"]
+layout_mode = 1
+offset_right = 51.0
+offset_bottom = 40.0
+
+[node name="HealthLabel" type="Label" parent="HUD/HUDRoot/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Health"
+
+[node name="CoinsLabel" type="Label" parent="HUD/HUDRoot/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Coins"
+
+[node name="HealthBar" type="Panel" parent="HUD/HUDRoot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Heart01" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+texture = ExtResource("6_mdf8t")
+offset = Vector2(9, 8)
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 51, 16)
+
+[node name="Heart02" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+texture = ExtResource("6_mdf8t")
+offset = Vector2(25, 8)
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 51, 16)
+
+[node name="Heart03" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+texture = ExtResource("6_mdf8t")
+offset = Vector2(41, 8)
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 51, 16)
+
+[node name="Heart04" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+texture = ExtResource("6_mdf8t")
+offset = Vector2(57, 8)
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 51, 16)
+
+[node name="Heart05" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+texture = ExtResource("6_mdf8t")
+offset = Vector2(73, 8)
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 51, 16)
+
+[connection signal="coins_changed" from="Players/Player" to="." method="_on_player_coins_changed"]
+[connection signal="health_changed" from="Players/Player" to="." method="_on_player_health_changed"]

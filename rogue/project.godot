@@ -13,7 +13,7 @@ config_version=5
 config/name="rogue"
 run/main_scene="uid://bf840r2f6l4w"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://ggil3qriegl4"
 
 [autoload]
 

@@ -9,7 +9,7 @@ extends Node
 @export var min_rooms := 5  # Minimum number of rooms we want to generate
 
 @export_group("Spawn Rates")
-@export var enemy_spawn_rate := 0.8
+@export var enemy_spawn_rate := 0.5
 @export var max_enemies_per_room := 2
 
 @export var coin_spawn_rate := 0.5

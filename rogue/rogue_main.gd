@@ -13,6 +13,10 @@ func _ready() -> void:
 	if not is_instance_valid(player):
 		print("RogueMain ERROR: player not found")
 		return
+	
+	GameState.reset()
+	%HealthLabel.text = "Health: " + str(GameState.player_health)
+	%CoinsLabel.text = "Coins: " + str(GameState.player_coins)
 
 	player.moved.connect(_on_player_moved)
 
@@ -36,3 +40,18 @@ func _on_player_moved(_direction: Vector2) -> void:
 	for enemy in enemies:
 		if is_instance_valid(enemy):
 			(enemy as EnemyBody).move()
+
+func _on_player_health_changed(health: int) -> void:
+	print("RogueMain _on_player_health_changed: ", health)
+	%HealthLabel.text = "Health: " + str(health)
+
+	var current_health: float = 100.0 * health / GameState.player_max_health
+
+	var hearts: Array[Node] = %HealthBar.get_children()
+	for i in range(hearts.size()):
+		var heart = hearts[i] as Sprite2D
+		heart.frame = 2 if current_health >= 20 else 1 if current_health >= 10 else 0
+		current_health -= 20
+
+func _on_player_coins_changed(coins: int) -> void:
+	%CoinsLabel.text = "Coins: " + str(coins)

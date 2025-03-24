@@ -2,6 +2,8 @@ class_name PlayerBody
 extends CharacterBase
 
 signal moved(direction: Vector2)
+signal health_changed(health: int)
+signal coins_changed(coins: int)
 
 var power: int = 10
 
@@ -36,6 +38,9 @@ func process_input() -> void:
 func move(direction: Vector2) -> void:
 	var result = query_ray(global_position, direction)
 
+	if result:
+		print("Player move: result: ", result)
+
 	if result and result.collider.is_in_group("Enemies"):
 		# if ray hit an enemy, attack
 		attack(direction)
@@ -43,7 +48,7 @@ func move(direction: Vector2) -> void:
 		# if ray hit a wall, don't move
 		return
 	else:
-		position += direction * GRID_SIZE
+		position += direction * GameState.PIXELS_PER_BLOCK
 		moved.emit(direction)
 
 func take_damage(amount: int) -> void:
@@ -52,7 +57,16 @@ func take_damage(amount: int) -> void:
 	if GameState.player_health <= 0:
 		get_tree().reload_current_scene()
 	else:
+		health_changed.emit(GameState.player_health)
 		$AnimationPlayer.play("take_damage")
+
+func heal(amount: int) -> void:
+	GameState.player_health = min(GameState.player_health + amount, GameState.player_max_health)
+	health_changed.emit(GameState.player_health)
+
+func add_coins(amount: int) -> void:
+	GameState.player_coins += amount
+	coins_changed.emit(GameState.player_coins)
 
 func attack(direction: Vector2) -> void:
 	print("Player attack: ", direction)
