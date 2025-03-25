@@ -161,4 +161,6 @@ func free_rooms() -> void:
 		room_node.queue_free()
 	room_nodes.clear()
 	rooms_instantiated = false
-	
+
+func get_room_position(position: Vector2) -> Vector2i:
+	return Vector2i(floor(position.x / GameState.PIXELS_PER_BLOCK / GameState.BLOCKS_PER_ROOM), floor(position.y / GameState.PIXELS_PER_BLOCK / GameState.BLOCKS_PER_ROOM))

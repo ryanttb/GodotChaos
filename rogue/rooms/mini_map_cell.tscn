@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsojros0x0u64"]
+
+[ext_resource type="Script" uid="uid://ciid0wddgrggd" path="res://rooms/mini_map_cell.gd" id="1_7w5yd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w5yd"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MiniMapCell" type="Panel"]
+custom_minimum_size = Vector2(24, 24)
+theme_override_styles/panel = SubResource("StyleBoxFlat_7w5yd")
+script = ExtResource("1_7w5yd")

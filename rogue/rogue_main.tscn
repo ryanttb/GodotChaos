@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf840r2f6l4w"]
+[gd_scene load_steps=9 format=3 uid="uid://bf840r2f6l4w"]
 
 [ext_resource type="Script" uid="uid://b3poj83acwit2" path="res://rogue_main.gd" id="1_mdf8t"]
 [ext_resource type="PackedScene" uid="uid://5xd50whig3rw" path="res://rooms/room.tscn" id="1_v708x"]
@@ -6,6 +6,14 @@
 [ext_resource type="Script" uid="uid://cwlutb2fagx20" path="res://generation/generation.gd" id="3_v708x"]
 [ext_resource type="Theme" uid="uid://brp1elrqq22nv" path="res://themes/hud_theme.tres" id="5_40ken"]
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="6_mdf8t"]
+[ext_resource type="PackedScene" uid="uid://bsojros0x0u64" path="res://rooms/mini_map_cell.tscn" id="8_al8o8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqjau"]
+bg_color = Color(0, 0, 0, 0.25098)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="RogueMain" type="Node"]
 script = ExtResource("1_mdf8t")
@@ -30,7 +38,7 @@ RoomScene = ExtResource("1_v708x")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="HUDRoot" type="Control" parent="HUD"]
+[node name="Status" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,33 +47,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_40ken")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HUDRoot"]
-layout_mode = 1
-offset_right = 51.0
-offset_bottom = 40.0
-
-[node name="HealthLabel" type="Label" parent="HUD/HUDRoot/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Health"
-
-[node name="CoinsLabel" type="Label" parent="HUD/HUDRoot/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Coins"
-
-[node name="HealthBar" type="Panel" parent="HUD/HUDRoot"]
+[node name="HealthBar" type="Panel" parent="HUD/Status"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -16.0
+offset_left = 16.0
+offset_top = -48.0
+offset_right = -880.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(2, 2)
 
-[node name="Heart01" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+[node name="Heart01" type="Sprite2D" parent="HUD/Status/HealthBar"]
 texture = ExtResource("6_mdf8t")
 offset = Vector2(9, 8)
 hframes = 3
@@ -73,7 +70,7 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(680, 170, 51, 16)
 
-[node name="Heart02" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+[node name="Heart02" type="Sprite2D" parent="HUD/Status/HealthBar"]
 texture = ExtResource("6_mdf8t")
 offset = Vector2(25, 8)
 hframes = 3
@@ -81,7 +78,7 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(680, 170, 51, 16)
 
-[node name="Heart03" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+[node name="Heart03" type="Sprite2D" parent="HUD/Status/HealthBar"]
 texture = ExtResource("6_mdf8t")
 offset = Vector2(41, 8)
 hframes = 3
@@ -89,7 +86,7 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(680, 170, 51, 16)
 
-[node name="Heart04" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+[node name="Heart04" type="Sprite2D" parent="HUD/Status/HealthBar"]
 texture = ExtResource("6_mdf8t")
 offset = Vector2(57, 8)
 hframes = 3
@@ -97,13 +94,106 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(680, 170, 51, 16)
 
-[node name="Heart05" type="Sprite2D" parent="HUD/HUDRoot/HealthBar"]
+[node name="Heart05" type="Sprite2D" parent="HUD/Status/HealthBar"]
 texture = ExtResource("6_mdf8t")
 offset = Vector2(73, 8)
 hframes = 3
 frame = 2
 region_enabled = true
 region_rect = Rect2(680, 170, 51, 16)
+
+[node name="ItemsBar" type="Panel" parent="HUD/Status"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -80.0
+offset_right = 144.0
+offset_bottom = -64.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="CoinSprite" type="Sprite2D" parent="HUD/Status/ItemsBar"]
+texture = ExtResource("6_mdf8t")
+offset = Vector2(8, 8)
+region_enabled = true
+region_rect = Rect2(544, 170, 16, 16)
+
+[node name="CoinsLabel" type="Label" parent="HUD/Status/ItemsBar"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 16.0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 16.0
+text = " x 0"
+
+[node name="KeySprite" type="Sprite2D" parent="HUD/Status/ItemsBar"]
+modulate = Color(1, 1, 1, 0.25098)
+position = Vector2(64, 0)
+texture = ExtResource("6_mdf8t")
+offset = Vector2(8, 8)
+region_enabled = true
+region_rect = Rect2(544, 187, 16, 16)
+
+[node name="MiniMap" type="Panel" parent="HUD"]
+custom_minimum_size = Vector2(224, 240)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -208.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqjau")
+
+[node name="Label" type="Label" parent="HUD/MiniMap"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("5_40ken")
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MiniMapGrid" type="GridContainer" parent="HUD/MiniMap"]
+custom_minimum_size = Vector2(192, 176)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -192.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 7
+
+[node name="MiniMapCell" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
+layout_mode = 2
+
+[node name="MiniMapCell2" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
+layout_mode = 2
+
+[node name="MiniMapCell3" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
+layout_mode = 2
+
+[node name="MiniMapCell4" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
+layout_mode = 2
+
+[node name="MiniMapCell5" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
+layout_mode = 2
 
 [connection signal="coins_changed" from="Players/Player" to="." method="_on_player_coins_changed"]
 [connection signal="health_changed" from="Players/Player" to="." method="_on_player_health_changed"]
