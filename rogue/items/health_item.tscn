@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="1_y0p6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24v5i"]
-size = Vector2(16, 16)
+size = Vector2(10, 8)
 
 [node name="HealthItem" type="Area2D" groups=["Items"]]
 script = ExtResource("1_24v5i")

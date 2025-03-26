@@ -24,7 +24,6 @@ GameState="*res://game_state.gd"
 Enemies=""
 Walls=""
 Items=""
-ItemsRoot=""
 
 [input]
 

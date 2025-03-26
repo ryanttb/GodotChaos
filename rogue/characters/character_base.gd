@@ -5,6 +5,7 @@ func _ready() -> void:
 	pass
 
 func query_ray(start_pos: Vector2, direction: Vector2) -> Dictionary:
+	start_pos = start_pos + Vector2(8, 8)
 	print("CharacterBase query_ray: start_pos: ", start_pos, " direction: ", direction)
 	var world: World2D = get_world_2d()
 	var space_state: PhysicsDirectSpaceState2D = world.direct_space_state

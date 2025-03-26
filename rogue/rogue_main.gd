@@ -16,8 +16,12 @@ func _ready() -> void:
 		print("RogueMain ERROR: player not found")
 		return
 	
-	GameState.reset()
-	%CoinsLabel.text = " x " + str(GameState.player_coins)
+	if GameState.level == 1:
+		GameState.reset()
+
+	_on_player_health_changed(GameState.player_health)
+	_on_player_coins_changed(GameState.player_coins)
+	_on_player_keys_changed(GameState.player_keys)
 
 	player.moved.connect(_on_player_moved)
 
@@ -29,9 +33,8 @@ func _ready() -> void:
 	generation.generate_map(PLAYER_START_ROOM_POSITION.x, PLAYER_START_ROOM_POSITION.y)
 	generation.print_map()
 	generation.instantiate_rooms()
-
+	generation.spawn_key_and_exit_door()
 	generate_mini_map()
-
 	enemies = get_tree().get_nodes_in_group("Enemies")
 	for enemy in enemies:
 		print("Enemy: ", enemy, " position: ", enemy.position)
@@ -81,6 +84,12 @@ func update_mini_map() -> void:
 	for child in $HUD/MiniMap/MiniMapGrid.get_children():
 		var cell: MiniMapCell = child as MiniMapCell
 		cell.set_is_room_current(cell.cell_position == current_room_position)
+	
+	%LevelLabel.text = "Level " + str(GameState.level)
 		
-		
-		
+
+func _on_player_keys_changed(keys: int) -> void:
+	if keys > 0:
+		%KeySprite.modulate = Color.WHITE
+	else:
+		%KeySprite.modulate = "ffffff40"

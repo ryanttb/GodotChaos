@@ -7,6 +7,8 @@ const ROOM_INSIDE_WIDTH := 9
 const ROOM_INSIDE_HEIGHT := 9
 const ROOM_INSIDE_OFFSET := 4
 
+const EMPTY_ROOM_POSITION: Vector2i = Vector2i(-1, -1)
+
 var player_health: int = 100
 var player_max_health: int = 100
 
@@ -22,3 +24,8 @@ func reset() -> void:
 	player_keys = 0
 	level = 1
 	level_seed = 56 if OS.is_debug_build() else randi()
+
+# keep health, coins, keys
+func next_level() -> void:
+	level += 1
+	level_seed = randi()

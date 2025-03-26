@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcjdus5iw8uxh"]
+[gd_scene load_steps=8 format=3 uid="uid://bcjdus5iw8uxh"]
 
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="1_64ae5"]
 [ext_resource type="Script" uid="uid://mifvjw4lp6is" path="res://characters/enemies/enemy.gd" id="1_vsn20"]
+[ext_resource type="AudioStream" uid="uid://vqlf2pdjhgf3" path="res://sfx/Hit.wav" id="3_wu8cj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ukr2o"]
 size = Vector2(16, 16)
@@ -61,3 +62,7 @@ shape = SubResource("RectangleShape2D_ukr2o")
 libraries = {
 &"": SubResource("AnimationLibrary_7t54a")
 }
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wu8cj")
+volume_db = -2.0

@@ -8,6 +8,8 @@ extends CharacterBase
 
 @onready var player: PlayerBody = get_tree().get_first_node_in_group("Player")
 
+@onready var hit_sfx = preload("res://sfx/Hit.wav")
+
 var move_chance: float = 0.5
 var attack_chance: float = 0.5
 
@@ -38,5 +40,7 @@ func take_damage(amount: int) -> void:
 		queue_free()
 	else:
 		$AnimationPlayer.play("take_damage")
+		$SFX.stream = hit_sfx
+		$SFX.play()
 		if randf() < attack_chance:
 			player.take_damage(power)

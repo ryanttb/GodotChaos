@@ -18,10 +18,10 @@ extends Node
 @export var health_item_spawn_rate := 0.5
 @export var max_health_items_per_room := 1
 
-@export var key_spawn_rate := 0.5
+@export var key_spawn_rate := 1.0
 @export var max_keys_per_room := 1
 
-@export var exit_door_spawn_rate := 0.5
+@export var exit_door_spawn_rate := 1.0
 @export var max_exit_doors_per_room := 1
 
 @onready var player: PlayerBody = get_tree().get_first_node_in_group("Player")
@@ -29,7 +29,7 @@ extends Node
 var room_count := 0
 var rooms_instantiated: bool = false
 
-var first_room_pos: Vector2i
+var first_room_pos: Vector2i = GameState.EMPTY_ROOM_POSITION
 
 var map: Array
 var room_nodes: Array[Node] = []
@@ -42,6 +42,7 @@ func clear_map() -> void:
 
 	map = []
 	room_count = 0
+	first_room_pos = GameState.EMPTY_ROOM_POSITION
 	map.resize(map_width)
 	for i in range(map_width):
 		var map_col: Array[bool]
@@ -152,6 +153,11 @@ func instantiate_rooms() -> void:
 				if is_instance_valid(room_root):
 					room_root.add_child(room_node)
 
+				if OS.is_debug_build():
+					if room_pos == first_room_pos:
+						room_node.spawn_key()
+						room_node.spawn_exit_door()
+
 				room_node.spawn_nodes()
 
 	rooms_instantiated = true
@@ -164,3 +170,25 @@ func free_rooms() -> void:
 
 func get_room_position(position: Vector2) -> Vector2i:
 	return Vector2i(floor(position.x / GameState.PIXELS_PER_BLOCK / GameState.BLOCKS_PER_ROOM), floor(position.y / GameState.PIXELS_PER_BLOCK / GameState.BLOCKS_PER_ROOM))
+
+func get_room_node(position: Vector2i) -> RoomNode:
+	return room_nodes[position.x + position.y * map_width]
+
+func spawn_key_and_exit_door() -> void:
+	var max_distance: float = 0.0
+	var key_room: RoomNode = null
+	var exit_door_room: RoomNode = null
+
+	for room_node in room_nodes:
+		for other_room_node in room_nodes:
+			if room_node != other_room_node:
+				var distance: float = room_node.position.distance_to(other_room_node.position)
+				if distance > max_distance:
+					max_distance = distance
+					key_room = room_node
+					exit_door_room = other_room_node
+
+	if is_instance_valid(key_room):
+		key_room.spawn_key()
+	if is_instance_valid(exit_door_room):
+		exit_door_room.spawn_exit_door()

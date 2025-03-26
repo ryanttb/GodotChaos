@@ -13,6 +13,9 @@ var room_position: Vector2i
 
 var used_positions: Array[Vector2i] = []
 
+var is_key_room: bool = false
+var is_exit_door_room: bool = false
+
 func spawn_nodes() -> void:
 	for i in range(generation.max_enemies_per_room):
 		try_spawn_node(EnemyScene, "EnemiesRoot", generation.enemy_spawn_rate)
@@ -20,10 +23,14 @@ func spawn_nodes() -> void:
 		try_spawn_node(CoinScene, "ItemsRoot", generation.coin_spawn_rate)
 	for i in range(generation.max_health_items_per_room):
 		try_spawn_node(HealthItemScene, "ItemsRoot", generation.health_item_spawn_rate)
-	for i in range(generation.max_keys_per_room):
-		try_spawn_node(KeyScene, "ItemsRoot", generation.key_spawn_rate)
-	for i in range(generation.max_exit_doors_per_room):
-		try_spawn_node(ExitDoorScene, "ExitDoorsRoot", generation.exit_door_spawn_rate)
+	
+func spawn_key() -> void:
+	is_key_room = true
+	try_spawn_node(KeyScene, "ItemsRoot", generation.key_spawn_rate)
+
+func spawn_exit_door() -> void:
+	is_exit_door_room = true
+	try_spawn_node(ExitDoorScene, "ExitDoorsRoot", generation.exit_door_spawn_rate)
 
 func open_door(direction: Vector2) -> void:
 	if direction == Vector2.UP:

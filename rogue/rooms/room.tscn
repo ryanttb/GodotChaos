@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://5xd50whig3rw"]
+[gd_scene load_steps=10 format=4 uid="uid://5xd50whig3rw"]
 
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="1_cxd3j"]
 [ext_resource type="Script" uid="uid://b3y2bw2mmpsd2" path="res://rooms/room.gd" id="1_pmtbo"]
 [ext_resource type="PackedScene" uid="uid://bcjdus5iw8uxh" path="res://characters/enemies/skeleton.tscn" id="2_ya37f"]
 [ext_resource type="PackedScene" uid="uid://iiag30y64ciw" path="res://items/coin.tscn" id="3_ji6aa"]
 [ext_resource type="PackedScene" uid="uid://cgpc0p36yhi1y" path="res://items/health_item.tscn" id="3_sdog0"]
+[ext_resource type="PackedScene" uid="uid://dcxqbqvonewek" path="res://items/key.tscn" id="5_nacpl"]
+[ext_resource type="PackedScene" uid="uid://ck3n0goqemr1t" path="res://items/door.tscn" id="6_tvl54"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oq318"]
 texture = ExtResource("1_cxd3j")
@@ -1090,6 +1092,8 @@ script = ExtResource("1_pmtbo")
 EnemyScene = ExtResource("2_ya37f")
 CoinScene = ExtResource("3_ji6aa")
 HealthItemScene = ExtResource("3_sdog0")
+KeyScene = ExtResource("5_nacpl")
+ExitDoorScene = ExtResource("6_tvl54")
 
 [node name="Base" type="TileMapLayer" parent="." groups=["Walls"]]
 position = Vector2(48, 48)

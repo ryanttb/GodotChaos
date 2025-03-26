@@ -32,6 +32,8 @@ zoom = Vector2(2, 2)
 
 [node name="Items" type="Node" parent="." groups=["ItemsRoot"]]
 
+[node name="ExitDoors" type="Node" parent="." groups=["ExitDoorsRoot"]]
+
 [node name="Generation" type="Node" parent="."]
 script = ExtResource("3_v708x")
 RoomScene = ExtResource("1_v708x")
@@ -130,6 +132,7 @@ offset_bottom = 16.0
 text = " x 0"
 
 [node name="KeySprite" type="Sprite2D" parent="HUD/Status/ItemsBar"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.25098)
 position = Vector2(64, 0)
 texture = ExtResource("6_mdf8t")
@@ -152,7 +155,8 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oqjau")
 
-[node name="Label" type="Label" parent="HUD/MiniMap"]
+[node name="LevelLabel" type="Label" parent="HUD/MiniMap"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 1
 anchors_preset = 10
@@ -183,17 +187,6 @@ columns = 7
 [node name="MiniMapCell" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
 layout_mode = 2
 
-[node name="MiniMapCell2" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
-layout_mode = 2
-
-[node name="MiniMapCell3" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
-layout_mode = 2
-
-[node name="MiniMapCell4" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
-layout_mode = 2
-
-[node name="MiniMapCell5" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
-layout_mode = 2
-
 [connection signal="coins_changed" from="Players/Player" to="." method="_on_player_coins_changed"]
 [connection signal="health_changed" from="Players/Player" to="." method="_on_player_health_changed"]
+[connection signal="keys_changed" from="Players/Player" to="." method="_on_player_keys_changed"]
