@@ -66,5 +66,3 @@ libraries = {
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_exd8k")
 volume_db = -2.0
-
-[connection signal="finished" from="SFX" to="." method="_on_sfx_finished"]

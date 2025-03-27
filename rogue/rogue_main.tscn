@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf840r2f6l4w"]
+[gd_scene load_steps=14 format=3 uid="uid://bf840r2f6l4w"]
 
 [ext_resource type="Script" uid="uid://b3poj83acwit2" path="res://rogue_main.gd" id="1_mdf8t"]
 [ext_resource type="PackedScene" uid="uid://5xd50whig3rw" path="res://rooms/room.tscn" id="1_v708x"]
@@ -6,7 +6,12 @@
 [ext_resource type="Script" uid="uid://cwlutb2fagx20" path="res://generation/generation.gd" id="3_v708x"]
 [ext_resource type="Theme" uid="uid://brp1elrqq22nv" path="res://themes/hud_theme.tres" id="5_40ken"]
 [ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="6_mdf8t"]
+[ext_resource type="Theme" uid="uid://cjhtumvyc7g5a" path="res://themes/screen_theme.tres" id="8_1qrq1"]
 [ext_resource type="PackedScene" uid="uid://bsojros0x0u64" path="res://rooms/mini_map_cell.tscn" id="8_al8o8"]
+[ext_resource type="PackedScene" uid="uid://defokkwk6m5w" path="res://screens/sprite_label.tscn" id="9_1qrq1"]
+[ext_resource type="Script" uid="uid://chsgqucf8xw3c" path="res://screens/game_over.gd" id="9_yirm5"]
+[ext_resource type="Shortcut" uid="uid://v4cddlfdqpic" path="res://screens/ok_shortcut.tres" id="11_ax82d"]
+[ext_resource type="AudioStream" uid="uid://bn5nngmsue0c0" path="res://sfx/Death.wav" id="11_poxai"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqjau"]
 bg_color = Color(0, 0, 0, 0.25098)
@@ -140,6 +145,25 @@ offset = Vector2(8, 8)
 region_enabled = true
 region_rect = Rect2(544, 187, 16, 16)
 
+[node name="DebugPanel" type="Panel" parent="HUD/Status"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="SeedLabel" type="Label" parent="HUD/Status/DebugPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Seed:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MiniMap" type="Panel" parent="HUD"]
 custom_minimum_size = Vector2(224, 240)
 anchors_preset = 3
@@ -187,6 +211,74 @@ columns = 7
 [node name="MiniMapCell" parent="HUD/MiniMap/MiniMapGrid" instance=ExtResource("8_al8o8")]
 layout_mode = 2
 
+[node name="Screens" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="GameOver" type="Panel" parent="Screens"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_1qrq1")
+script = ExtResource("9_yirm5")
+
+[node name="GameOverLabel" type="Label" parent="Screens/GameOver"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 136.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "You Died!"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Screens/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelLabel" parent="Screens/GameOver/Buttons" instance=ExtResource("9_1qrq1")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 23"
+sprite = Vector2i(0, 9)
+
+[node name="CoinsLabel" parent="Screens/GameOver/Buttons" instance=ExtResource("9_1qrq1")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 23"
+sprite = Vector2i(32, 10)
+
+[node name="KillsLabel" parent="Screens/GameOver/Buttons" instance=ExtResource("9_1qrq1")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 23"
+sprite = Vector2i(29, 6)
+
+[node name="OkButton" type="Button" parent="Screens/GameOver/Buttons"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+shortcut = ExtResource("11_ax82d")
+text = "Okay"
+
+[node name="Sound" type="AudioStreamPlayer" parent="Screens/GameOver"]
+stream = ExtResource("11_poxai")
+
 [connection signal="coins_changed" from="Players/Player" to="." method="_on_player_coins_changed"]
+[connection signal="died" from="Players/Player" to="." method="_on_player_died"]
 [connection signal="health_changed" from="Players/Player" to="." method="_on_player_health_changed"]
 [connection signal="keys_changed" from="Players/Player" to="." method="_on_player_keys_changed"]
+[connection signal="visibility_changed" from="Screens/GameOver" to="Screens/GameOver" method="_on_visibility_changed"]
+[connection signal="pressed" from="Screens/GameOver/Buttons/OkButton" to="Screens/GameOver" method="_on_back_button_pressed"]

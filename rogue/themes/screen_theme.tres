@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cjhtumvyc7g5a"]
+
+[ext_resource type="FontFile" uid="uid://ogpfqepue2i2" path="res://themes/Kenney Pixel.ttf" id="1_c83u4"]
+
+[resource]
+default_font = ExtResource("1_c83u4")
+default_font_size = 48
+VBoxContainer/constants/separation = 16

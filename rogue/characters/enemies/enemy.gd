@@ -37,9 +37,11 @@ func take_damage(amount: int) -> void:
 	print("Enemy take_damage: ", amount)
 	health -= amount
 	if health <= 0:
+		GameState.enemies_killed += 1
 		queue_free()
 	else:
 		$AnimationPlayer.play("take_damage")
+		# this sfx is local to the enemy and does not use SfxNode
 		$SFX.stream = hit_sfx
 		$SFX.play()
 		if randf() < attack_chance:

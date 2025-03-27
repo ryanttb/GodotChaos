@@ -61,7 +61,6 @@ func try_spawn_node(node_scene: PackedScene, node_root_group: String, spawn_rate
 		var spawn_position: Vector2i = Vector2i(randi() % GameState.ROOM_INSIDE_WIDTH, randi() % GameState.ROOM_INSIDE_HEIGHT)
 		if check_spawn_position(spawn_position):
 			var node: Node2D = node_scene.instantiate()
-			print("Room try_spawn_node name: ", node.name, " room_position: ", room_position, " spawn_position: ", spawn_position)
 			node.global_position = (room_position * GameState.BLOCKS_PER_ROOM + Vector2i(GameState.ROOM_INSIDE_OFFSET + spawn_position.x, GameState.ROOM_INSIDE_OFFSET + spawn_position.y)) * GameState.PIXELS_PER_BLOCK
 			var node_root = get_tree().get_first_node_in_group(node_root_group)
 			if is_instance_valid(node_root):

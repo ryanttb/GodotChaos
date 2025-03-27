@@ -1,0 +1,7 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://v4cddlfdqpic"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_t3bh0"]
+action = &"ok"
+
+[resource]
+events = [SubResource("InputEventAction_t3bh0")]

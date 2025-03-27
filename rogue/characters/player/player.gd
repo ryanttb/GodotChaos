@@ -3,19 +3,15 @@ extends CharacterBase
 
 @onready var walk_sfx = preload("res://sfx/Walk.wav")
 @onready var hit_sfx = preload("res://sfx/Hit.wav")
-@onready var heal_sfx = preload("res://sfx/Heart.wav")
-@onready var key_sfx = preload("res://sfx/Key.wav")
-@onready var coin_sfx = preload("res://sfx/Coin.wav")
-@onready var death_sfx = preload("res://sfx/Death.wav")
 
 signal moved(direction: Vector2)
 signal health_changed(health: int)
 signal coins_changed(coins: int)
 signal keys_changed(keys: int)
 
-var power: int = 10
+signal died
 
-@onready var is_dead: bool = GameState.player_health <= 0
+var power: int = 10
 
 func _physics_process(_delta: float) -> void:
 	process_input()
@@ -59,6 +55,8 @@ func move(direction: Vector2) -> void:
 		return
 	else:
 		position += direction * GameState.PIXELS_PER_BLOCK
+		GameState.player_steps += 1
+		# this sfx is local to the player and does not use SfxNode
 		$SFX.stream = walk_sfx
 		$SFX.play()
 		moved.emit(direction)
@@ -66,32 +64,28 @@ func move(direction: Vector2) -> void:
 func take_damage(amount: int) -> void:
 	print("Player take_damage: ", amount)
 	GameState.player_health -= amount
+	health_changed.emit(GameState.player_health)
+	
 	if GameState.player_health <= 0:
-		is_dead = true
-		$SFX.stream = death_sfx
-		$SFX.play()
+		died.emit()
 	else:
 		$AnimationPlayer.play("take_damage")
+		# this sfx is local to the player and does not use SfxNode
 		$SFX.stream = hit_sfx
 		$SFX.play()
-		health_changed.emit(GameState.player_health)
 
 func heal(amount: int) -> void:
 	GameState.player_health = min(GameState.player_health + amount, GameState.player_max_health)
-	$SFX.stream = heal_sfx
-	$SFX.play()
+	(Sfx as SfxNode).play_heart()
 	health_changed.emit(GameState.player_health)
 
 func add_coins(amount: int) -> void:
 	GameState.player_coins += amount
-	$SFX.stream = coin_sfx
-	$SFX.play()
 	coins_changed.emit(GameState.player_coins)
 
 func add_key() -> void:
 	GameState.player_keys += 1
-	$SFX.stream = key_sfx
-	$SFX.play()
+	(Sfx as SfxNode).play_key()
 	keys_changed.emit(GameState.player_keys)
 
 func use_key() -> void:
@@ -109,9 +103,3 @@ func attack(direction: Vector2) -> void:
 		var collider = result.collider
 		if collider.is_in_group("Enemies"):
 			(collider as EnemyBody).take_damage(power)
-
-
-func _on_sfx_finished() -> void:
-	if is_dead:
-		GameState.reset()
-		get_tree().reload_current_scene()

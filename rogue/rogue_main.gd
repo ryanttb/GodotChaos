@@ -16,9 +16,6 @@ func _ready() -> void:
 		print("RogueMain ERROR: player not found")
 		return
 	
-	if GameState.level == 1:
-		GameState.reset()
-
 	_on_player_health_changed(GameState.player_health)
 	_on_player_coins_changed(GameState.player_coins)
 	_on_player_keys_changed(GameState.player_keys)
@@ -30,6 +27,8 @@ func _ready() -> void:
 	generation.clear_map()
 	
 	seed(GameState.level_seed)
+	%SeedLabel.text = "Seed: " + str(GameState.level_seed)
+	
 	generation.generate_map(PLAYER_START_ROOM_POSITION.x, PLAYER_START_ROOM_POSITION.y)
 	generation.print_map()
 	generation.instantiate_rooms()
@@ -93,3 +92,7 @@ func _on_player_keys_changed(keys: int) -> void:
 		%KeySprite.modulate = Color.WHITE
 	else:
 		%KeySprite.modulate = "ffffff40"
+
+func _on_player_died() -> void:
+	$Screens/GameOver.visible = true
+	get_tree().paused = true

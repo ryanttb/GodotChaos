@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://defokkwk6m5w"]
+
+[ext_resource type="Theme" uid="uid://cjhtumvyc7g5a" path="res://themes/screen_theme.tres" id="1_kc84o"]
+[ext_resource type="Script" uid="uid://j2q6tda4gw15" path="res://screens/sprite_label.gd" id="1_krtgc"]
+[ext_resource type="Texture2D" uid="uid://dsqqnsh3kccu5" path="res://assets/spritesheet.png" id="2_kc84o"]
+
+[node name="SpriteLabel" type="Label"]
+offset_left = 48.0
+offset_right = 132.0
+offset_bottom = 36.0
+theme = ExtResource("1_kc84o")
+text = "Label"
+script = ExtResource("1_krtgc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-24, 20)
+scale = Vector2(2, 2)
+texture = ExtResource("2_kc84o")
+region_enabled = true
+region_rect = Rect2(17, 0, 16, 16)
