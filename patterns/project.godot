@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="patterns"
-run/main_scene="uid://383dui020o65"
+run/main_scene="uid://cw22ui7e5pfge"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://1ukofohcxvsu"
 
 [display]
 

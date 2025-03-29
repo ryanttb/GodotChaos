@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw22ui7e5pfge"]
+
+[ext_resource type="Theme" uid="uid://bppp1ndovr2kh" path="res://themes/ui_theme.tres" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://cb5awh86ljcix" path="res://menu.gd" id="2_ouk20"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lti8b")
+script = ExtResource("2_ouk20")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "Patterns"
+horizontal_alignment = 1
+
+[node name="Buttons" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Commands" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Commands"
+
+[node name="ObjectPool" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Object Pool"
+
+[node name="Observer" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Observer"
+
+[node name="SingleResp" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Single Resp
+"
+
+[connection signal="pressed" from="Panel/Buttons/Commands" to="." method="_on_commands_pressed"]
+[connection signal="pressed" from="Panel/Buttons/ObjectPool" to="." method="_on_object_pool_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Observer" to="." method="_on_observer_pressed"]
+[connection signal="pressed" from="Panel/Buttons/SingleResp" to="." method="_on_single_resp_pressed"]
