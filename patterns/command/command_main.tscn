@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://0okr8yh0pavy"]
+
+[ext_resource type="Script" uid="uid://cginvo37uysst" path="res://command/command_main.gd" id="1_0k3q7"]
+[ext_resource type="Script" uid="uid://ojf6l6hn0e7n" path="res://command/command_manager.gd" id="1_cxkxq"]
+[ext_resource type="Texture2D" uid="uid://c0wqbr37wi5hj" path="res://assets/spritesheet.png" id="1_hfmw0"]
+[ext_resource type="Script" uid="uid://rlp81n6goe0q" path="res://command/sprite_mover.gd" id="3_mbm7q"]
+[ext_resource type="Texture2D" uid="uid://c55fdh3av83td" path="res://assets/tiles/tile_0108.png" id="4_0k3q7"]
+[ext_resource type="Theme" uid="uid://bppp1ndovr2kh" path="res://themes/ui_theme.tres" id="6_0xbl3"]
+[ext_resource type="Texture2D" uid="uid://dlu8fc8if2av1" path="res://assets/tiles/tile_0082.png" id="7_vcdaw"]
+[ext_resource type="Texture2D" uid="uid://bsn3yxookkhj6" path="res://assets/tiles/tile_0092.png" id="8_p51p3"]
+[ext_resource type="Texture2D" uid="uid://7mjpe20j476e" path="res://assets/tiles/tile_0116.png" id="9_p51p3"]
+
+[node name="CommandMain" type="Node2D"]
+script = ExtResource("1_0k3q7")
+
+[node name="CommandManager" type="Node" parent="."]
+script = ExtResource("1_cxkxq")
+
+[node name="SpriteMover" type="Node" parent="."]
+script = ExtResource("3_mbm7q")
+
+[node name="Ghost" type="Sprite2D" parent="."]
+position = Vector2(-72, -56)
+texture = ExtResource("4_0k3q7")
+
+[node name="Snake" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_hfmw0")
+region_enabled = true
+region_rect = Rect2(476, 136, 16, 16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_0xbl3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UIRoot"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Undo" type="Button" parent="CanvasLayer/UIRoot/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "Undo"
+
+[node name="Redo" type="Button" parent="CanvasLayer/UIRoot/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "Redo"
+
+[node name="Barrel" type="Sprite2D" parent="."]
+position = Vector2(-232, -96)
+texture = ExtResource("7_vcdaw")
+
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(-184, 72)
+texture = ExtResource("8_p51p3")
+
+[node name="Potion" type="Sprite2D" parent="."]
+position = Vector2(144, -104)
+texture = ExtResource("9_p51p3")
+
+[connection signal="pressed" from="CanvasLayer/UIRoot/HBoxContainer/Undo" to="CommandManager" method="undo_command"]
+[connection signal="pressed" from="CanvasLayer/UIRoot/HBoxContainer/Redo" to="CommandManager" method="redo_command"]

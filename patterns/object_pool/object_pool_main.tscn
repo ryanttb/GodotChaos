@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://383dui020o65"]
+
+[ext_resource type="Texture2D" uid="uid://1ukofohcxvsu" path="res://assets/tiles/tile_0110.png" id="1_dq7l7"]
+[ext_resource type="Script" uid="uid://ch47nj8syja1w" path="res://object_pool/crab.gd" id="1_tt55m"]
+[ext_resource type="Texture2D" uid="uid://cgye31dp1wk75" path="res://assets/tiles/tile_0115.png" id="3_36arm"]
+[ext_resource type="Script" uid="uid://y1cy5aadjogi" path="res://object_pool/object_pool.gd" id="3_60euv"]
+[ext_resource type="Texture2D" uid="uid://cghr4d7m2jod8" path="res://assets/tiles/tile_0112.png" id="4_kyku3"]
+[ext_resource type="PackedScene" uid="uid://snxo73x8cxs3" path="res://object_pool/hammer.tscn" id="5_60euv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tt55m"]
+radius = 7.0
+
+[node name="ObjectPoolMain" type="Node2D"]
+
+[node name="Crab" type="CharacterBody2D" parent="."]
+script = ExtResource("1_tt55m")
+
+[node name="Sprite" type="Sprite2D" parent="Crab"]
+texture = ExtResource("1_dq7l7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crab"]
+shape = SubResource("CircleShape2D_tt55m")
+
+[node name="Camera2D" type="Camera2D" parent="Crab"]
+zoom = Vector2(2, 2)
+
+[node name="ProjectilePool" type="Node" parent="Crab"]
+script = ExtResource("3_60euv")
+object_scene = ExtResource("5_60euv")
+
+[node name="HealthPotion" type="Sprite2D" parent="."]
+position = Vector2(-227, -64)
+texture = ExtResource("3_36arm")
+
+[node name="Guy" type="Sprite2D" parent="."]
+position = Vector2(109, 97)
+texture = ExtResource("4_kyku3")
