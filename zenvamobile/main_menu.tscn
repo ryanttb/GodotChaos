@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1tqsnj51odm7"]
 
-[ext_resource type="Script" path="res://main_menu.gd" id="1_wh13p"]
+[ext_resource type="Script" uid="uid://bc3poqcxjdtm3" path="res://main_menu.gd" id="1_wh13p"]
 [ext_resource type="Theme" uid="uid://x1d3wb2rvq3n" path="res://assets/zenva_mobile.tres" id="1_ysqv4"]
 [ext_resource type="Theme" uid="uid://d3t6cvfesfqp8" path="res://assets/zenva_mobile_menu.tres" id="2_82u5i"]
 

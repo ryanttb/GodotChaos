@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="ZenvaMobile"
+config/name="Clicker"
 run/main_scene="res://main_menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="uid://dcuq4unmgmgb"
 
 [display]
 

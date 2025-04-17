@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkh1i2d4l8a27"]
 
-[ext_resource type="Script" path="res://game_over.gd" id="1_cpyfx"]
+[ext_resource type="Script" uid="uid://cae5da2ot62ag" path="res://game_over.gd" id="1_cpyfx"]
 [ext_resource type="Theme" uid="uid://x1d3wb2rvq3n" path="res://assets/zenva_mobile.tres" id="2_qckf5"]
 [ext_resource type="Theme" uid="uid://d3t6cvfesfqp8" path="res://assets/zenva_mobile_menu.tres" id="3_6xq67"]
 
