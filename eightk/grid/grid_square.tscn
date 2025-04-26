@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c0xuqqap7oj64"]
+
+[node name="GridSquare" type="Polygon2D"]
+color = Color(0.729412, 0.85098, 0.85098, 1)
+polygon = PackedVector2Array(16, 8, 112, 8, 112, 120, 16, 120)

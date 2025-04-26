@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5ep6ruu2efxa"]
+
+[ext_resource type="PackedScene" uid="uid://c0xuqqap7oj64" path="res://grid/grid_square.tscn" id="1_cqvej"]
+
+[node name="GridRow" type="Node2D"]
+
+[node name="GridSquare1" parent="." instance=ExtResource("1_cqvej")]
+
+[node name="GridSquare2" parent="." instance=ExtResource("1_cqvej")]
+position = Vector2(128, 0)
+
+[node name="GridSquare3" parent="." instance=ExtResource("1_cqvej")]
+position = Vector2(256, 0)
+
+[node name="GridSquare4" parent="." instance=ExtResource("1_cqvej")]
+position = Vector2(384, 0)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cguad8o080fo3"]
+
+[ext_resource type="PackedScene" uid="uid://b5ep6ruu2efxa" path="res://grid/grid_row.tscn" id="1_ppiwg"]
+[ext_resource type="Script" uid="uid://clrhxhq1dkped" path="res://grid/Grid.cs" id="1_y3jnv"]
+
+[node name="Grid" type="Node2D"]
+script = ExtResource("1_y3jnv")
+
+[node name="GridBackground" type="Polygon2D" parent="."]
+scale = Vector2(0.8, 1)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(0, 0, 512, 0, 512, 512, 0, 512)
+
+[node name="GridRow1" parent="GridBackground" instance=ExtResource("1_ppiwg")]
+
+[node name="GridRow2" parent="GridBackground" instance=ExtResource("1_ppiwg")]
+position = Vector2(0, 128)
+
+[node name="GridRow3" parent="GridBackground" instance=ExtResource("1_ppiwg")]
+position = Vector2(0, 256)
+
+[node name="GridRow4" parent="GridBackground" instance=ExtResource("1_ppiwg")]
+position = Vector2(0, 384)
+
+[node name="Tiles" type="Node2D" parent="."]
+scale = Vector2(0.8, 1)
