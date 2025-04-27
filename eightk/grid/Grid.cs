@@ -5,8 +5,9 @@ using System.Text;
 using Tiles;
 
 namespace Grid {
-	public partial class Grid : Node2D
-	{
+	public partial class Grid : Node2D {
+		private const bool FORCE_RELEASE = true;
+
 		private PackedScene tileScene;
 
 		private Tile[,] grid;
@@ -159,8 +160,15 @@ namespace Grid {
 			Tile tile = tileScene.Instantiate<Tile>();
 			GetNode<Node2D>("Tiles").AddChild(tile);
 			tile.Position = position * tileSize;
-			bool spawn4 = random.Next(0, 10) > 7;
-			tile.Value = spawn4 ? 4 : 2;
+			tile.PlaySpawnAnimation();
+			int spawnValue = 2;
+			if (random.Next(0, 10) > 7) {
+				spawnValue = 4;
+			}
+			if (OS.IsDebugBuild() && !FORCE_RELEASE) {
+				spawnValue = 512;
+			}
+			tile.Value = spawnValue;
 			grid[(int)position.X, (int)position.Y] = tile;
 		}
 

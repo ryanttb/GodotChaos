@@ -8,7 +8,7 @@ script = ExtResource("1_y3jnv")
 
 [node name="GridBackground" type="Polygon2D" parent="."]
 scale = Vector2(0.8, 1)
-color = Color(1, 1, 1, 0)
+color = Color(0.811765, 0.901961, 0.87451, 1)
 polygon = PackedVector2Array(0, 0, 512, 0, 512, 512, 0, 512)
 
 [node name="GridRow1" parent="GridBackground" instance=ExtResource("1_ppiwg")]

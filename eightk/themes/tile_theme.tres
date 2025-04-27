@@ -1,5 +1,8 @@
-[gd_resource type="Theme" format=3 uid="uid://r3fiwpmw7pb1"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://r3fiwpmw7pb1"]
+
+[ext_resource type="FontFile" uid="uid://ccj04axq70iio" path="res://themes/FredokaOne-Regular.ttf" id="1_mk8ux"]
 
 [resource]
+default_font = ExtResource("1_mk8ux")
 Label/colors/font_color = Color(0.18359, 0.18359, 0.18359, 1)
 Label/font_sizes/font_size = 48

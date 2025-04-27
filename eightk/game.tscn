@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dduphdx8a6edi"]
+
+[ext_resource type="PackedScene" uid="uid://cguad8o080fo3" path="res://grid/grid.tscn" id="1_80nbo"]
+
+[node name="Game" type="Node"]
+
+[node name="Grid" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(112, 256)

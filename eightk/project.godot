@@ -11,10 +11,17 @@ config_version=5
 [application]
 
 config/name="EightK"
+config/description="Bugs:
+* when one tile moves and merges, a new tile is not spawned"
 config/version="0.0.1"
-run/main_scene="uid://cguad8o080fo3"
+run/main_scene="uid://dduphdx8a6edi"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=648
+window/size/viewport_height=1152
 
 [dotnet]
 
@@ -53,4 +60,4 @@ slide_right={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.811765, 0.901961, 0.87451, 1)
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)
