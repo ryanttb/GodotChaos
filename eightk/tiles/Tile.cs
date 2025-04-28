@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace Tiles {
+namespace EightK {
 	public partial class Tile : Polygon2D {
 		const float TILE_SPAWN_OFFSET_X = (128 - 16) / 2;
 		const float TILE_SPAWN_OFFSET_Y = (128 - 8) / 2;
@@ -36,6 +36,9 @@ namespace Tiles {
 		}
 
 		private void OnValueSet(int value) {
+			if (!IsInstanceValid(label)) {
+				return;
+			}
 			label.Text = value.ToString();
 			
 			int layoutIndex = 0;

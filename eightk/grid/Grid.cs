@@ -2,11 +2,17 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Tiles;
+using System.Linq;
 
-namespace Grid {
+namespace EightK {
 	public partial class Grid : Node2D {
 		private const bool FORCE_RELEASE = true;
+
+		[Signal]
+		public delegate void OnScoreChangedEventHandler(int score);
+
+		[Signal]
+		public delegate void OnGameOverEventHandler();
 
 		private PackedScene tileScene;
 
@@ -39,8 +45,22 @@ namespace Grid {
 					SpawnRandomTile();
 				}
 
+				if (IsGameOver() || OS.IsDebugBuild() && !FORCE_RELEASE) {
+					EmitSignal(SignalName.OnGameOver);
+				}
+
 				PrintGrid();
 			}
+		}
+
+		public void Reset() {
+			foreach (var tile in GetNode<Node2D>("Tiles").GetChildren()) {
+				if (IsInstanceValid(tile)) {
+					tile.QueueFree();
+				}
+			}
+			PopulateStartingTiles();
+			PrintGrid();
 		}
 
 		private void PopulateStartingTiles() {
@@ -72,6 +92,8 @@ namespace Grid {
 			Dictionary<Tile, Vector2> tilesToMerge = [];
 
 			GD.Print($"MoveTiles direction: {direction}, isHorizontal: {isHorizontal}, isReverse: {isReverse}");
+
+			int pointsScored = 0;
    
 			for (int i = 0; i < gridSize; i++) {
 				// Tiles to move in this row or column
@@ -99,6 +121,7 @@ namespace Grid {
 						mergedTile = nextTile;
 						tilesToMove.Pop();
 						currentTile.Value *= 2;
+						pointsScored += currentTile.Value;
 					}
 					Vector2I newPos = new(isHorizontal ? newIndex : i, isHorizontal ? i : newIndex);
 					Vector2I oldPos = new((int)currentTile.Position.X / tileSize, (int)currentTile.Position.Y / tileSize);
@@ -108,6 +131,9 @@ namespace Grid {
 					grid[newPos.X, newPos.Y] = currentTile;
 					if (mergedTile != null) {
 						tilesToMerge.Add(mergedTile, new Vector2(newPos.X, newPos.Y));
+
+						// Merging a tile is also a movement
+						movementOccurred = true;
 					}
 					newIndex += isReverse ? 1 : -1;
 				}
@@ -133,6 +159,8 @@ namespace Grid {
 					tile.QueueFree();
 				}));
 			}
+
+			EmitSignal(SignalName.OnScoreChanged, pointsScored);
 
 			return movementOccurred;
 		}
@@ -170,6 +198,42 @@ namespace Grid {
 			}
 			tile.Value = spawnValue;
 			grid[(int)position.X, (int)position.Y] = tile;
+		}
+
+		private bool IsGameOver() {
+			for (int i = 0; i < gridSize; i++) {
+				for (int j = 0; j < gridSize; j++) {
+					if (grid[i, j] == null) {
+						return false;
+					} else {
+						var adjacentTiles = GetAdjacentTiles(new Vector2I(i, j));
+						foreach (var tile in adjacentTiles) {
+							if (tile.Value == grid[i, j].Value) {
+								return false;
+							}
+						}
+					}
+				}
+			}
+			GD.Print("Game over");
+			return true;
+		}
+
+		private List<Tile> GetAdjacentTiles(Vector2I position) {
+			List<Tile> adjacentTiles = [];
+			if (position.X > 0) {
+				adjacentTiles.Add(grid[position.X - 1, position.Y]);
+			}
+			if (position.X < gridSize - 1) {
+				adjacentTiles.Add(grid[position.X + 1, position.Y]);
+			}
+			if (position.Y > 0) {
+				adjacentTiles.Add(grid[position.X, position.Y - 1]);
+			}
+			if (position.Y < gridSize - 1) {
+				adjacentTiles.Add(grid[position.X, position.Y + 1]);
+			}
+			return [.. adjacentTiles.Where(tile => tile != null)];
 		}
 
 		private void PrintGrid() {
